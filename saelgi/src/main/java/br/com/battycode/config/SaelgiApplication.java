@@ -1,12 +1,12 @@
-package br.com.battycode.main;
+package br.com.battycode.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UiApplication {
+public class SaelgiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UiApplication.class, args);
+		SpringApplication.run(SaelgiApplication.class, args);
 	}
 }

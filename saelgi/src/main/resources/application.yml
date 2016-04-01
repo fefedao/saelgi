@@ -1,0 +1,8 @@
+server:
+  contextPath: /saelgi
+  port: 8080
+
+security:
+  user:
+    name: luiz.hartke
+    password: lego123
