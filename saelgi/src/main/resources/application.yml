@@ -6,3 +6,7 @@ security:
   user:
     name: luiz.hartke
     password: lego123
+    
+logging:
+  level:
+    org.springframework.security: DEBUG
