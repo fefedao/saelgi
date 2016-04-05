@@ -1,4 +1,4 @@
-angular.module('hello', [ 'ngRoute' ]).config(function($routeProvider, $httpProvider) {
+angular.module('saelgi', [ 'ngRoute' ]).config(function($routeProvider, $httpProvider) {
 
 	$routeProvider.when('/', {
 		templateUrl : 'home.html',
@@ -70,8 +70,10 @@ angular.module('hello', [ 'ngRoute' ]).config(function($routeProvider, $httpProv
 			}
 
 		}).controller('home', function($http) {
-	var self = this;
-	$http.get('/resource').then(function(response) {
-		self.greeting = response.data;
-	})
+			var self = this;
+			$http.get('/saelgi/resource').then(
+					function(response) {
+						self.greeting = response.data;
+					}
+			)
 });
