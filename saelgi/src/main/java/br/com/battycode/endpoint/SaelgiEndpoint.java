@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -36,7 +37,7 @@ public class SaelgiEndpoint {
 	public static void main(String[] args) {
 		SpringApplication.run(SaelgiEndpoint.class, args);
 	}
-	
+
 	@RequestMapping("/user")
 	public Principal user(Principal user) {
 		return user;
@@ -55,13 +56,16 @@ public class SaelgiEndpoint {
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll().anyRequest().authenticated().and().csrf().csrfTokenRepository(csrfTokenRepository()).and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/")
+					.permitAll().anyRequest().authenticated().and().csrf().csrfTokenRepository(csrfTokenRepository())
+					.and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 		}
 
 		private Filter csrfHeaderFilter() {
 			return new OncePerRequestFilter() {
 				@Override
-				protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+				protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+						FilterChain filterChain) throws ServletException, IOException {
 					CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 					if (csrf != null) {
 						Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
@@ -81,6 +85,11 @@ public class SaelgiEndpoint {
 			HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
 			repository.setHeaderName("X-XSRF-TOKEN");
 			return repository;
+		}
+
+		@Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().antMatchers("/img/**");
 		}
 	}
 }
