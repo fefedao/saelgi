@@ -2,7 +2,10 @@ package br.com.battycode.endpoint;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -18,7 +21,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -29,6 +35,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
+import br.com.battycode.dto.Esfera;
+import br.com.battycode.dto.Licitacao;
+
 @SpringBootApplication
 @RestController
 public class SaelgiEndpoint {
@@ -36,7 +45,7 @@ public class SaelgiEndpoint {
 	public static void main(String[] args) {
 		SpringApplication.run(SaelgiEndpoint.class, args);
 	}
-	
+
 	@RequestMapping("/user")
 	public Principal user(Principal user) {
 		return user;
@@ -49,19 +58,37 @@ public class SaelgiEndpoint {
 		model.put("content", "Mapa licitatorio");
 		return model;
 	}
+	
+	@RequestMapping("/licitacoes")
+	public Map<String, Object> licitacoes() {
+//		List<String> licitacoes = new ArrayList<>();
+//		licitacoes.add("Teste");
+//		licitacoes.add("Teste1");
+//		licitacoes.add(new Licitacao("Secretaria de Seguraça do Rio Grande do Sul", "SC", Esfera.Estadual, new Date(), new Date(), new Date()));
+//		licitacoes.add(new Licitacao("Guarnição do 18º Batalhão da Marinha", "RJ", Esfera.Federal, new Date(), new Date(), new Date()));
+//		return new ResponseEntity<List<String>>(licitacoes, HttpStatus.OK);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("id", UUID.randomUUID().toString());
+		model.put("content", "Mapa licitatorio");
+		System.out.println("AQUI!--------------------------");
+		return model;
+	}
 
 	@Configuration
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll().anyRequest().authenticated().and().csrf().csrfTokenRepository(csrfTokenRepository()).and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/licitacoes.html", "/")
+					.permitAll().anyRequest().authenticated().and().csrf().csrfTokenRepository(csrfTokenRepository())
+					.and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 		}
 
 		private Filter csrfHeaderFilter() {
 			return new OncePerRequestFilter() {
 				@Override
-				protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+				protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+						FilterChain filterChain) throws ServletException, IOException {
 					CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 					if (csrf != null) {
 						Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
@@ -82,5 +109,11 @@ public class SaelgiEndpoint {
 			repository.setHeaderName("X-XSRF-TOKEN");
 			return repository;
 		}
+
+		@Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().antMatchers("/img/**");
+		}
+		
 	}
 }
