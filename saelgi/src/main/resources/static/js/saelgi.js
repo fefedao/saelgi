@@ -11,10 +11,10 @@ function($routeProvider, $httpProvider) {
 		controller : 'navigation',
 		controllerAs: 'controller'
 	}).when('/licitacoes', {
-		templateUrl : 'licitacoes.html',
-		controller : 'licita',
+		templateUrl : 'licitacao.html',
+		controller : 'licitacao',
 		controllerAs: 'controller'
-	
+
 	}).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -22,7 +22,7 @@ function($routeProvider, $httpProvider) {
 }).controller('navigation',
 
 function($rootScope, $http, $location, $route) {
-	
+
 	var self = this;
 
 	self.tab = function(route) {
@@ -56,6 +56,7 @@ function($rootScope, $http, $location, $route) {
 	self.login = function() {
 		authenticate(self.credentials, function(authenticated) {
 			if (authenticated) {
+
 				console.log("Login succeeded")
 				$location.path("/");
 				self.error = false;
@@ -83,14 +84,12 @@ function($rootScope, $http, $location, $route) {
 				self.greeting = response.data;
 			}
 	)
-});
-/*
-.controller('licita', function($http) {
+}).controller('licitacao', function($http) {
 	var self = this;
 	$http.get('/saelgi/licitacoes').then(
 			function(response) {
-				self.licitacoes = response.data;
+				console.log("Licitações listadas")
+				//self.greeting = response.data;
 			}
 	)
 });
-*/

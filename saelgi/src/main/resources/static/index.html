@@ -9,35 +9,35 @@
 </head>
 
 <body ng-app="saelgi" ng-cloak class="ng-cloak">
-	
 	<table>
 		<tr>
-		    <td>
+		    <td valign="top">
 		    	<div class=".navbar-brand">
 		    		<img ng-src="img/saelgi.png" alt="SAELGI" />
 		    	</div>
 		    	<div ng-controller="navigation as nav" class=".col-xs-push-12 ">
 				    <ul class="nav" style>
-				    	<li ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li>
-						<li ng-class="{active:nav.tab('home')}"><a href="">Documentação</a></li>
+				    	<li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li>
+						<li><a href="">Documentação</a></li>
 				    </ul>
 				</div>
 			</td>
-		    <td>
+		    <td valign="top">
 				<div ng-controller="navigation as nav" class="container">
 					<ul class="nav nav-pills" role="tablist">
 						<li ng-class="{active:nav.tab('home')}"><a href="#/">Inicio</a></li>
 						<li ng-class="{active:nav.tab('navigation')}"><a href="#/login">Entrar</a></li>
-						<li><a href="">Configurar</a></li>
+						<!--  <li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li> -->
+						<li><a href="">Configurações</a></li>
 						<li ng-show="authenticated"><a href="" ng-click="nav.logout()">Sair</a></li>
 					</ul>
 				</div>
 				<div ng-view class="container"></div>
-			</td>		
+			</td>
 	  	</tr>
   	</table>
 	<script src="js/angular-bootstrap.js" type="text/javascript"></script>
-	<script src="js/saelgi.js"></script>	
+	<script src="js/saelgi.js"></script>
 </body>
 
 </html>

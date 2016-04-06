@@ -60,13 +60,18 @@ public class SaelgiEndpoint {
 	}
 	
 	@RequestMapping("/licitacoes")
-	public void licitacoes() {
+	public Map<String, Object> licitacoes() {
 //		List<String> licitacoes = new ArrayList<>();
 //		licitacoes.add("Teste");
 //		licitacoes.add("Teste1");
 //		licitacoes.add(new Licitacao("Secretaria de Seguraça do Rio Grande do Sul", "SC", Esfera.Estadual, new Date(), new Date(), new Date()));
 //		licitacoes.add(new Licitacao("Guarnição do 18º Batalhão da Marinha", "RJ", Esfera.Federal, new Date(), new Date(), new Date()));
 //		return new ResponseEntity<List<String>>(licitacoes, HttpStatus.OK);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("id", UUID.randomUUID().toString());
+		model.put("content", "Mapa licitatorio");
+		System.out.println("AQUI!--------------------------");
+		return model;
 	}
 
 	@Configuration
