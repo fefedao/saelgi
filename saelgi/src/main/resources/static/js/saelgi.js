@@ -1,4 +1,6 @@
-angular.module('saelgi', [ 'ngRoute' ]).config(function($routeProvider, $httpProvider) {
+angular.module('saelgi', [ 'ngRoute' ]).config(
+
+function($routeProvider, $httpProvider) {
 
 	$routeProvider.when('/', {
 		templateUrl : 'home.html',
@@ -8,72 +10,87 @@ angular.module('saelgi', [ 'ngRoute' ]).config(function($routeProvider, $httpPro
 		templateUrl : 'login.html',
 		controller : 'navigation',
 		controllerAs: 'controller'
+	}).when('/licitacoes', {
+		templateUrl : 'licitacoes.html',
+		controller : 'licita',
+		controllerAs: 'controller'
+	
 	}).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 }).controller('navigation',
 
-		function($rootScope, $http, $location, $route) {
-			
-			var self = this;
+function($rootScope, $http, $location, $route) {
+	
+	var self = this;
 
-			self.tab = function(route) {
-				return $route.current && route === $route.current.controller;
-			};
+	self.tab = function(route) {
+		return $route.current && route === $route.current.controller;
+	};
 
-			var authenticate = function(credentials, callback) {
+	var authenticate = function(credentials, callback) {
 
-				var headers = credentials ? {
-					authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
-				} : {};
-				$http.get('user', {
-					headers : headers
-				}).then(function(response) {
-					if (response.data.name) {
-						$rootScope.authenticated = true;
-					} else {
-						$rootScope.authenticated = false;
-					}
-					callback && callback($rootScope.authenticated);
-				}, function() {
-					$rootScope.authenticated = false;
-					callback && callback(false);
-				});
-
+		var headers = credentials ? {
+			authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
+		} : {};
+		$http.get('user', {
+			headers : headers
+		}).then(function(response) {
+			if (response.data.name) {
+				$rootScope.authenticated = true;
+			} else {
+				$rootScope.authenticated = false;
 			}
+			callback && callback($rootScope.authenticated);
+		}, function() {
+			$rootScope.authenticated = false;
+			callback && callback(false);
+		});
 
-			authenticate();
+	}
 
-			self.credentials = {};
-			self.login = function() {
-				authenticate(self.credentials, function(authenticated) {
-					if (authenticated) {
-						console.log("Login succeeded")
-						$location.path("/");
-						self.error = false;
-						$rootScope.authenticated = true;
-					} else {
-						console.log("Login failed")
-						$location.path("/login");
-						self.error = true;
-						$rootScope.authenticated = false;
-					}
-				})
-			};
+	authenticate();
 
-			self.logout = function() {
-				$http.post('logout', {}).finally(function() {
-					$rootScope.authenticated = false;
-					$location.path("/");
-				});
+	self.credentials = {};
+	self.login = function() {
+		authenticate(self.credentials, function(authenticated) {
+			if (authenticated) {
+				console.log("Login succeeded")
+				$location.path("/");
+				self.error = false;
+				$rootScope.authenticated = true;
+			} else {
+				console.log("Login failed")
+				$location.path("/login");
+				self.error = true;
+				$rootScope.authenticated = false;
 			}
+		})
+	};
 
-		}).controller('home', function($http) {
-			var self = this;
-			$http.get('/saelgi/resource').then(
-					function(response) {
-						self.greeting = response.data;
-					}
-			)
+	self.logout = function() {
+		$http.post('logout', {}).finally(function() {
+			$rootScope.authenticated = false;
+			$location.path("/");
+		});
+	}
+
+}).controller('home', function($http) {
+	var self = this;
+	$http.get('/saelgi/resource').then(
+			function(response) {
+				self.greeting = response.data;
+			}
+	)
 });
+/*
+.controller('licita', function($http) {
+	var self = this;
+	$http.get('/saelgi/licitacoes').then(
+			function(response) {
+				self.licitacoes = response.data;
+			}
+	)
+});
+*/

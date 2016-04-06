@@ -2,7 +2,10 @@ package br.com.battycode.endpoint;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -18,6 +21,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -29,6 +34,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
+
+import br.com.battycode.dto.Esfera;
+import br.com.battycode.dto.Licitacao;
 
 @SpringBootApplication
 @RestController
@@ -50,13 +58,23 @@ public class SaelgiEndpoint {
 		model.put("content", "Mapa licitatorio");
 		return model;
 	}
+	
+	@RequestMapping("/licitacoes")
+	public void licitacoes() {
+//		List<String> licitacoes = new ArrayList<>();
+//		licitacoes.add("Teste");
+//		licitacoes.add("Teste1");
+//		licitacoes.add(new Licitacao("Secretaria de Seguraça do Rio Grande do Sul", "SC", Esfera.Estadual, new Date(), new Date(), new Date()));
+//		licitacoes.add(new Licitacao("Guarnição do 18º Batalhão da Marinha", "RJ", Esfera.Federal, new Date(), new Date(), new Date()));
+//		return new ResponseEntity<List<String>>(licitacoes, HttpStatus.OK);
+	}
 
 	@Configuration
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/")
+			http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/licitacoes.html", "/")
 					.permitAll().anyRequest().authenticated().and().csrf().csrfTokenRepository(csrfTokenRepository())
 					.and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 		}
@@ -91,5 +109,6 @@ public class SaelgiEndpoint {
 		public void configure(WebSecurity web) throws Exception {
 			web.ignoring().antMatchers("/img/**");
 		}
+		
 	}
 }
