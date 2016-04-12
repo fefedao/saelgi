@@ -89,6 +89,12 @@ buildNumber.properties
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
+/.idea/codeStyleSettings.xml
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea
 .idea/dataSources.xml
 .idea/dataSources.local.xml
 .idea/sqlDataSources.xml
