@@ -1,19 +1,24 @@
 package br.com.battycode.dto;
 
+import br.com.battycode.util.JsonDateSerializer;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 import java.util.List;
 
+@JsonAutoDetect
 public class Licitacao {
 
-	String orgao;
-	String uf;
-	Esfera esfera;
-	Endereco endereco;
-	Proposta propostaComercial;
-	List<Documento> documentacao;
-	Date dataDeAbertura;
-	Date dataEntregaProposta;
-	Date dataEntregaDocumentacao;
+	private String orgao;
+	private String uf;
+	private Esfera esfera;
+	private Endereco endereco;
+	private Proposta propostaComercial;
+	private List<Documento> documentacao;
+	private Date dataDeAbertura;
+	private Date dataEntregaProposta;
+	private Date dataEntregaDocumentacao;
 	
 	public Licitacao(String orgao, String uf, Esfera esfera, Date dataDeAbertura, Date dataEntregaProposta, Date dataEntregaDocumentacao) {
 		this.orgao = orgao;
@@ -60,19 +65,22 @@ public class Licitacao {
 	public void setDocumentacao(List<Documento> documentacao) {
 		this.documentacao = documentacao;
 	}
-	public Date getDataDeAbertura() {
+    @JsonSerialize(using=JsonDateSerializer.class)
+    public Date getDataDeAbertura() {
 		return dataDeAbertura;
 	}
 	public void setDataDeAbertura(Date dataDeAbertura) {
 		this.dataDeAbertura = dataDeAbertura;
 	}
-	public Date getDataEntregaProposta() {
+    @JsonSerialize(using=JsonDateSerializer.class)
+    public Date getDataEntregaProposta() {
 		return dataEntregaProposta;
 	}
 	public void setDataEntregaProposta(Date dataEntregaProposta) {
 		this.dataEntregaProposta = dataEntregaProposta;
 	}
-	public Date getDataEntregaDocumentacao() {
+    @JsonSerialize(using=JsonDateSerializer.class)
+    public Date getDataEntregaDocumentacao() {
 		return dataEntregaDocumentacao;
 	}
 	public void setDataEntregaDocumentacao(Date dataEntregaDocumentacao) {

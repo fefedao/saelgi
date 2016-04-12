@@ -86,10 +86,11 @@ function($rootScope, $http, $location, $route) {
 	)
 }).controller('licitacao', function($http) {
 	var self = this;
+	self.users=[];
 	$http.get('/saelgi/licitacoes').then(
 			function(response) {
 				console.log("Licitações listadas")
-				//self.greeting = response.data;
+				self.licitacoes = response.data;
 			}
 	)
 });
