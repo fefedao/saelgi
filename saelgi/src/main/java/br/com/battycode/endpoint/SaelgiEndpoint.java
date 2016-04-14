@@ -1,7 +1,7 @@
 package br.com.battycode.endpoint;
 
-import br.com.battycode.dao.LicitacaoDAO;
 import br.com.battycode.dto.Licitacao;
+import br.com.battycode.service.LicitacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,14 +20,14 @@ import java.util.UUID;
 public class SaelgiEndpoint {
 
 	@Autowired
-	private LicitacaoDAO licitacaoDAO;
+	private LicitacaoService licitacaoService;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public Principal user(Principal user) {
 		return user;
 	}
 
-	@RequestMapping("/resource")
+	@RequestMapping(value = "/resource", method = RequestMethod.GET)
 	public Map<String, Object> home() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("id", UUID.randomUUID().toString());
@@ -37,7 +37,7 @@ public class SaelgiEndpoint {
 	
 	@RequestMapping(value = "/licitacoes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Licitacao>> licitacoes() {
-		List<Licitacao> licitacoes = licitacaoDAO.findAll();
+		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
 		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
 	}
 }

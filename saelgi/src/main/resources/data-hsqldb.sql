@@ -1,1 +1,5 @@
-INSERT INTO licitacao VALUES (1, 1, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 1, '213/2010');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital) VALUES (1, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 1, '213/2010');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital) VALUES (2, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 3, '251/2010');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital) VALUES (4, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 1, '288/2010');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital) VALUES (1, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 2, '219/2010');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital) VALUES (7, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 1, '223/2010');

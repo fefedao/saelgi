@@ -1,7 +1,7 @@
 --DROP TABLE licitacao IF EXISTS;
 
 CREATE TABLE licitacao (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoOrgao INTEGER,
   dataDeAbertura TIMESTAMP,
   dataEntregaProposta TIMESTAMP,
@@ -13,14 +13,14 @@ CREATE TABLE licitacao (
 --DROP TABLE modalidade IF EXISTS;
 
 CREATE TABLE modalidade (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   modalidade VARCHAR(20)
 );
 
 --DROP TABLE documentoEmpresa IF EXISTS;
 
 CREATE TABLE documentoEmpresa (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoEmpresa INTEGER,
   codigoDocumento INTEGER,
   dataExpedicao TIMESTAMP,
@@ -35,14 +35,14 @@ CREATE TABLE documentoEmpresa (
 --DROP TABLE documento IF EXISTS;
 
 CREATE TABLE documento (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   nome VARCHAR(100)
 );
 
 --DROP TABLE documentoLicitacao IF EXISTS;
 
 CREATE TABLE documentoLicitacao (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoLicitacao INTEGER,
   codigoEmpresa INTEGER
 );
@@ -50,7 +50,7 @@ CREATE TABLE documentoLicitacao (
 --DROP TABLE orgao IF EXISTS;
 
 CREATE TABLE orgao (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   esfera VARCHAR(2),
   email VARCHAR(50),
   codigoEndereco INTEGER
@@ -59,7 +59,7 @@ CREATE TABLE orgao (
 --DROP TABLE endereco IF EXISTS;
 
 CREATE TABLE endereco (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   municipio VARCHAR(100),
   uf VARCHAR(2),
   bairro VARCHAR(60),
@@ -72,7 +72,7 @@ CREATE TABLE endereco (
 --DROP TABLE empresa IF EXISTS;
 
 CREATE TABLE empresa (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   razaoSocial VARCHAR(100),
   nomeFantasia VARCHAR(100),
   email VARCHAR(50),
@@ -82,7 +82,7 @@ CREATE TABLE empresa (
 --DROP TABLE representante IF EXISTS;
 
 CREATE TABLE representante (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoEmpresa  INTEGER,
   nome VARCHAR(100),
   email VARCHAR(50),
@@ -92,7 +92,7 @@ CREATE TABLE representante (
 --DROP TABLE telefone IF EXISTS;
 
 CREATE TABLE telefone (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoEmpresa INTEGER,
   codigoRepresentante INTEGER,
   codigoOrgao INTEGER,
@@ -104,7 +104,7 @@ CREATE TABLE telefone (
 --DROP TABLE usuario IF EXISTS;
 
 CREATE TABLE usuario (
-  codigo    INTEGER PRIMARY KEY,
+  codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoEmpresa  INTEGER,
   usuario VARCHAR(20),
   senha VARCHAR(20)
