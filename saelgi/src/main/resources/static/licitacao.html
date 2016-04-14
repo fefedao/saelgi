@@ -10,8 +10,9 @@
             <table class="table table-hover">
                 <thead>
                 <tr align="center">
+                    <th align="center">Codigo</th>
+                    <th align="center">Numero Licitação</th>
                     <th align="center">Orgão</th>
-                    <th align="center">UF</th>
                     <th align="center">Esfera</th>
                     <th align="center">Abertura</th>
                     <th align="center">Proposta</th>
@@ -21,9 +22,10 @@
                 </thead>
                 <tbody>
                 <tr align="left" ng-repeat="lic in controller.licitacoes">
-                    <td align="left"><span ng-bind="lic.orgao"></span></td>
-                    <td align="center"><span ng-bind="lic.uf"></span></td>
-                    <td align="center"><span ng-bind="lic.esfera"></span></td>
+                    <td align="left"><span ng-bind="lic.codigo"></span></td>
+                    <td align="cennter"><span ng-bind="lic.numeroEdital"></span></td>
+                    <td align="center"><span ng-bind="lic.codigoOrgao"></span></td>
+                    <td align="center"><span ng-bind="lic.codigoEsfera"></span></td>
                     <td align="center"><span ng-bind="lic.dataDeAbertura"></span></td>
                     <td align="center"><span ng-bind="lic.dataEntregaProposta"></span></td>
                     <td align="center"><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
