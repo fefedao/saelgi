@@ -11,8 +11,8 @@ import java.util.List;
 public class Licitacao {
 
     private Integer codigo;
-    private Integer codigoOrgao;
-    private Integer codigoModalidade;
+    private Orgao orgao;
+    private Modalidade modalidade;
     private String numeroEdital;
     private Date dataDeAbertura;
     private Date dataEntregaProposta;
@@ -29,20 +29,20 @@ public class Licitacao {
         this.codigo = codigo;
     }
 
-    public Integer getCodigoOrgao() {
-        return codigoOrgao;
+    public Orgao getOrgao() {
+        return orgao;
     }
 
-    public void setCodigoOrgao(Integer codigoOrgao) {
-        this.codigoOrgao = codigoOrgao;
+    public void setOrgao(Orgao orgao) {
+        this.orgao = orgao;
     }
 
-    public Integer getCodigoModalidade() {
-        return codigoModalidade;
+    public Modalidade getModalidade() {
+        return modalidade;
     }
 
-    public void setCodigoModalidade(Integer codigoModalidade) {
-        this.codigoModalidade = codigoModalidade;
+    public void setModalidade(Modalidade modalidade) {
+        this.modalidade = modalidade;
     }
 
     public String getNumeroEdital() {

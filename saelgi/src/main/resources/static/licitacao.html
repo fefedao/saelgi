@@ -5,31 +5,29 @@
 <div ng-show="authenticated">
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><span class="lead">Lista de Licitacoes</span></div>
+        <div class="panel-heading"><span class="lead">Lista de Licitações</span></div>
         <div class="tablecontainer">
             <table class="table table-hover">
                 <thead>
                 <tr align="center">
-                    <th align="center">Codigo</th>
-                    <th align="center">Numero Licitação</th>
-                    <th align="center">Orgão</th>
-                    <th align="center">Esfera</th>
-                    <th align="center">Abertura</th>
-                    <th align="center">Proposta</th>
-                    <th align="center">Entrega Docs</th>
+                    <th style="text-align: center;">Numero Licitação</th>
+                    <th style="text-align: center;">Orgão</th>
+                    <th style="text-align: center;">Modalidade</th>
+                    <th style="text-align: center;">Abertura</th>
+                    <th style="text-align: center;">Proposta</th>
+                    <th style="text-align: center;">Entrega Docs</th>
                     <th align="center" width="20%"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr align="left" ng-repeat="lic in controller.licitacoes">
-                    <td align="left"><span ng-bind="lic.codigo"></span></td>
-                    <td align="center"><span ng-bind="lic.numeroEdital"></span></td>
-                    <td align="center"><span ng-bind="lic.codigoOrgao"></span></td>
-                    <td align="center"><span ng-bind="lic.codigoEsfera"></span></td>
-                    <td align="center"><span ng-bind="lic.dataDeAbertura"></span></td>
-                    <td align="center"><span ng-bind="lic.dataEntregaProposta"></span></td>
-                    <td align="center"><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
-                    <td align="center">
+                <tr align="center" ng-repeat="lic in controller.licitacoes">
+                    <td><span ng-bind="lic.numeroEdital"></span></td>
+                    <td><span ng-bind="lic.orgao.nomeOrgao"></span></td>
+                    <td><span ng-bind="lic.modalidade.nomeModalidade"></span></td>
+                    <td><span ng-bind="lic.dataDeAbertura"></span></td>
+                    <td><span ng-bind="lic.dataEntregaProposta"></span></td>
+                    <td><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
+                    <td>
                         <button type="button" class="btn btn-success custom-width">Editar</button>
                         <button type="button" class="btn btn-danger custom-width">Excluir</button>
                     </td>

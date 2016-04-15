@@ -10,11 +10,22 @@ CREATE TABLE licitacao (
   numeroEdital  VARCHAR(50)
 );
 
+--DROP TABLE orgao IF EXISTS;
+
+CREATE TABLE orgao (
+  codigo    INTEGER IDENTITY PRIMARY KEY,
+  esfera INTEGER,
+  nomeOrgao VARCHAR(200),
+  email VARCHAR(50),
+  cnpj VARCHAR(20),
+  codigoEndereco INTEGER
+);
+
 --DROP TABLE modalidade IF EXISTS;
 
 CREATE TABLE modalidade (
   codigo    INTEGER IDENTITY PRIMARY KEY,
-  modalidade VARCHAR(20)
+  nomeModalidade VARCHAR(20)
 );
 
 --DROP TABLE documentoEmpresa IF EXISTS;
@@ -45,15 +56,6 @@ CREATE TABLE documentoLicitacao (
   codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoLicitacao INTEGER,
   codigoEmpresa INTEGER
-);
-
---DROP TABLE orgao IF EXISTS;
-
-CREATE TABLE orgao (
-  codigo    INTEGER IDENTITY PRIMARY KEY,
-  esfera VARCHAR(2),
-  email VARCHAR(50),
-  codigoEndereco INTEGER
 );
 
 --DROP TABLE endereco IF EXISTS;
