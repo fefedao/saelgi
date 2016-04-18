@@ -31,6 +31,7 @@ public class LicitacaoDAOImpl implements LicitacaoDAO{
         sb.append("FROM licitacao l ");
         sb.append("JOIN orgao o ON o.codigo = l.codigoOrgao ");
         sb.append("JOIN modalidade m ON m.codigo = l.codigoModalidade ");
+        sb.append("WHERE l.flagExcluido = 'N' ");
 
         return jdbctemplate.query(sb.toString(), new RowMapper<Licitacao>() {
             @Override
@@ -56,4 +57,14 @@ public class LicitacaoDAOImpl implements LicitacaoDAO{
             }
         });
     }
+
+    @Override
+    public void excluirLicitacao(Integer codigoLicitacao) {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE licitacao SET flagExcluido = 'S' WHERE codigo = " + codigoLicitacao.toString() );
+        jdbctemplate.execute(sb.toString());
+    }
+
+
 }

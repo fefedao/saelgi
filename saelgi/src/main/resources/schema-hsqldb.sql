@@ -7,7 +7,8 @@ CREATE TABLE licitacao (
   dataEntregaProposta TIMESTAMP,
   dataEntregaDocumentacao TIMESTAMP,
   codigoModalidade INTEGER,
-  numeroEdital  VARCHAR(50)
+  numeroEdital  VARCHAR(50),
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE orgao IF EXISTS;
@@ -18,7 +19,8 @@ CREATE TABLE orgao (
   nomeOrgao VARCHAR(200),
   email VARCHAR(50),
   cnpj VARCHAR(20),
-  codigoEndereco INTEGER
+  codigoEndereco INTEGER,
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE modalidade IF EXISTS;

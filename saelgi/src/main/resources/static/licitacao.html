@@ -29,7 +29,7 @@
                     <td><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
                     <td>
                         <button type="button" class="btn btn-success custom-width">Editar</button>
-                        <button type="button" class="btn btn-danger custom-width">Excluir</button>
+                        <button type="button" ng-click="controller.excluir(lic.codigo)"  class="btn btn-danger custom-width">Excluir</button>
                     </td>
                 </tr>
                 </tbody>

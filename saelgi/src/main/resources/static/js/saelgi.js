@@ -14,7 +14,6 @@ function($routeProvider, $httpProvider) {
 		templateUrl : 'licitacao.html',
 		controller : 'licitacao',
 		controllerAs: 'controller'
-
 	}).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -56,7 +55,6 @@ function($rootScope, $http, $location, $route) {
 	self.login = function() {
 		authenticate(self.credentials, function(authenticated) {
 			if (authenticated) {
-
 				console.log("Login succeeded")
 				$location.path("/");
 				self.error = false;
@@ -80,17 +78,30 @@ function($rootScope, $http, $location, $route) {
 }).controller('home', function($http) {
 	var self = this;
 	$http.get('/saelgi/resource').then(
-			function(response) {
-				self.greeting = response.data;
-			}
+        function(response) {
+            self.greeting = response.data;
+        }
 	)
 }).controller('licitacao', function($http) {
 	var self = this;
-	self.users=[];
+
+	self.excluir = function(codigo) {
+    	$http.delete('/saelgi/licitacoes/' + codigo, {}).finally(
+    	    function() {
+    		$http.get('/saelgi/licitacoes').then(
+                    function(response) {
+                        console.log("Licitações listadas")
+                        self.licitacoes = response.data;
+                    }
+            	)
+    	});
+    }
+
 	$http.get('/saelgi/licitacoes').then(
-			function(response) {
-				console.log("Licitações listadas")
-				self.licitacoes = response.data;
-			}
+        function(response) {
+            console.log("Licitações listadas")
+            self.licitacoes = response.data;
+        }
 	)
+
 });

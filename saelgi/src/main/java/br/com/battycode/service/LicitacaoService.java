@@ -11,4 +11,6 @@ public interface LicitacaoService {
 
     List<Licitacao> obterTodasLicitacoes();
 
+    void removerLicitacao(Integer codigo);
+
 }

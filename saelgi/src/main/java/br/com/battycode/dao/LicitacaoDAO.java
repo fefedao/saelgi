@@ -11,4 +11,5 @@ public interface LicitacaoDAO {
 
     List<Licitacao> findAll();
 
+    void excluirLicitacao(Integer codigoLicitacao);
 }

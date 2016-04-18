@@ -21,4 +21,11 @@ public class LicitacaoServiceImpl implements LicitacaoService{
     public List<Licitacao> obterTodasLicitacoes() {
         return licitacaoDAO.findAll();
     }
+
+    @Override
+    public void removerLicitacao(Integer codigo) {
+        licitacaoDAO.excluirLicitacao(codigo);
+    }
+
+
 }

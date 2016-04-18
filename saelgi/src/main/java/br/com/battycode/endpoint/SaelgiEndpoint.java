@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,14 @@ public class SaelgiEndpoint {
 	}
 	
 	@RequestMapping(value = "/licitacoes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Licitacao>> licitacoes() {
+	public ResponseEntity<List<Licitacao>> listaLicitacoes() {
+		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
+		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/licitacoes/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Licitacao>> deleteLicitacao(@PathVariable("codigo") Integer codigo) {
+		licitacaoService.removerLicitacao(codigo);
 		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
 		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
 	}
