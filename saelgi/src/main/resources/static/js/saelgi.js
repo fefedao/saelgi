@@ -82,19 +82,33 @@ function($rootScope, $http, $location, $route) {
             self.greeting = response.data;
         }
 	)
-}).controller('licitacao', function($http) {
+}).controller('licitacao', function($http, $rootScope) {
 	var self = this;
+
+	self.editar = false;
 
 	self.excluir = function(codigo) {
     	$http.delete('/saelgi/licitacoes/' + codigo, {}).finally(
     	    function() {
     		$http.get('/saelgi/licitacoes').then(
                     function(response) {
-                        console.log("Licitações listadas")
+                        console.log("Licitação removida")
                         self.licitacoes = response.data;
                     }
             	)
     	});
+    }
+
+    self.edit = function(codigo) {
+        $http.put('/saelgi/licitacoes/' + codigo, {}).finally(
+            function() {
+            self.editar = true;
+            $http.get('/saelgi/licitacoes').then(
+                function(response) {
+                    console.log("Editar licitação")
+                }
+            )
+        });
     }
 
 	$http.get('/saelgi/licitacoes').then(

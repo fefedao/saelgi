@@ -11,6 +11,9 @@ public interface LicitacaoService {
 
     List<Licitacao> obterTodasLicitacoes();
 
+    Licitacao obterLicitacao(Integer codigo);
+
     void removerLicitacao(Integer codigo);
 
+    void editLicitacao(Integer codigo);
 }

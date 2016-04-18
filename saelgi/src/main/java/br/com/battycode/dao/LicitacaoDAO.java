@@ -11,5 +11,9 @@ public interface LicitacaoDAO {
 
     List<Licitacao> findAll();
 
+    Licitacao find(Integer codigoLicitacao);
+
     void excluirLicitacao(Integer codigoLicitacao);
+
+    void editLicitacao(Integer codigo);
 }

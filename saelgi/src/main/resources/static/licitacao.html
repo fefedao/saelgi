@@ -2,7 +2,7 @@
 <div ng-show="!authenticated">
     <p>Entre para obter o conteudo.</p>
 </div>
-<div ng-show="authenticated">
+<div ng-show="authenticated && !controller.editar">
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Lista de Licitações</span></div>
@@ -28,12 +28,16 @@
                     <td><span ng-bind="lic.dataEntregaProposta"></span></td>
                     <td><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
                     <td>
-                        <button type="button" class="btn btn-success custom-width">Editar</button>
-                        <button type="button" ng-click="controller.excluir(lic.codigo)"  class="btn btn-danger custom-width">Excluir</button>
+                        <button type="button" ng-click="controller.edit(lic.codigo, lic)" class="btn btn-success custom-width">Editar</button>
+                        <button type="button" ng-click="controller.excluir(lic.codigo)" class="btn btn-danger custom-width">Excluir</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+
+
+<div ng-show="authenticated && controller.editar">
 </div>

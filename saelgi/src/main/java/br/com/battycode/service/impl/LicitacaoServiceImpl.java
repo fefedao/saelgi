@@ -23,6 +23,16 @@ public class LicitacaoServiceImpl implements LicitacaoService{
     }
 
     @Override
+    public Licitacao obterLicitacao(Integer codigo) {
+        return licitacaoDAO.find(codigo);
+    }
+
+    @Override
+    public void editLicitacao(Integer codigo){
+        licitacaoDAO.editLicitacao(codigo);
+    }
+
+    @Override
     public void removerLicitacao(Integer codigo) {
         licitacaoDAO.excluirLicitacao(codigo);
     }

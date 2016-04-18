@@ -42,7 +42,8 @@ CREATE TABLE documentoEmpresa (
   flAutenticavel VARCHAR(1),
   flConferidoInternet VARCHAR(1),
   siteOrigem VARCHAR(200),
-  blDocumentoPdf  BLOB
+  blDocumentoPdf  BLOB,
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE documento IF EXISTS;
@@ -57,7 +58,8 @@ CREATE TABLE documento (
 CREATE TABLE documentoLicitacao (
   codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoLicitacao INTEGER,
-  codigoEmpresa INTEGER
+  codigoEmpresa INTEGER,
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE endereco IF EXISTS;
@@ -70,7 +72,8 @@ CREATE TABLE endereco (
   logradouro VARCHAR(200),
   numero VARCHAR(20),
   complemento VARCHAR(100),
-  referencia VARCHAR(100)
+  referencia VARCHAR(100),
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE empresa IF EXISTS;
@@ -80,7 +83,8 @@ CREATE TABLE empresa (
   razaoSocial VARCHAR(100),
   nomeFantasia VARCHAR(100),
   email VARCHAR(50),
-  cnpj VARCHAR(20)
+  cnpj VARCHAR(20),
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE representante IF EXISTS;
@@ -90,7 +94,8 @@ CREATE TABLE representante (
   codigoEmpresa  INTEGER,
   nome VARCHAR(100),
   email VARCHAR(50),
-  cnpj VARCHAR(20)
+  cnpj VARCHAR(20),
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE telefone IF EXISTS;
@@ -102,7 +107,8 @@ CREATE TABLE telefone (
   codigoOrgao INTEGER,
   telefone VARCHAR(20),
   tipoTelefone VARCHAR(2),
-  flPrincipal VARCHAR(1)
+  flPrincipal VARCHAR(1),
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE usuario IF EXISTS;
@@ -111,5 +117,6 @@ CREATE TABLE usuario (
   codigo    INTEGER IDENTITY PRIMARY KEY,
   codigoEmpresa  INTEGER,
   usuario VARCHAR(20),
-  senha VARCHAR(20)
+  senha VARCHAR(20),
+  flagExcluido VARCHAR(1)
 );
