@@ -89,7 +89,7 @@ function($rootScope, $http, $location, $route) {
 	self.btnExcluir = function(codigo) {
     	$http.delete('/saelgi/licitacoes/' + codigo, {}).finally(
     	    function() {
-            console.log("Licitação removida")
+            console.log("licitacao excluida")
     		$http.get('/saelgi/licitacoes').then(
                 function(response) {
                     self.licitacoes = response.data;
@@ -105,7 +105,7 @@ function($rootScope, $http, $location, $route) {
             self.licitacao = response.data;
             $http.get('/saelgi/licitacoes').then(
                 function(response) {
-                    console.log("Editar licitação")
+                    console.log("editar licitacao")
                 }
             )
         });
@@ -113,11 +113,12 @@ function($rootScope, $http, $location, $route) {
 
     self.btnCancelar = function() {
         $http.get('/saelgi/licitacoes').then(
-                function(response) {
-                    console.log("Licitações listadas")
-                    self.licitacoes = response.data;
-                }
-            )
+            function(response) {
+                console.log("edicao licitacao cancelada")
+                self.showEditar = false;
+                self.licitacoes = response.data;
+            }
+        )
     }
 
     self.formEditar = function() {
@@ -127,7 +128,7 @@ function($rootScope, $http, $location, $route) {
             $rootScope.licitacao = self.licitacao;
             $http.get('/saelgi/licitacoes').then(
               function(response) {
-                  console.log("Licitacao editada")
+                  console.log("licitacao editada")
               }
           )
         });
@@ -135,7 +136,7 @@ function($rootScope, $http, $location, $route) {
 
 	$http.get('/saelgi/licitacoes').then(
         function(response) {
-            console.log("Licitações listadas")
+            console.log("licitacoes listadas")
             self.licitacoes = response.data;
         }
 	)
