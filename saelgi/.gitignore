@@ -95,6 +95,7 @@ buildNumber.properties
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea
+/saelgi.iml
 .idea/dataSources.xml
 .idea/dataSources.local.xml
 .idea/sqlDataSources.xml

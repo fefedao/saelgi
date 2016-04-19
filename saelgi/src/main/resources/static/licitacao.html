@@ -1,8 +1,8 @@
-<h1>SAELGI - Sistema de Apoio para a Empresa Licitante</h1>
+<h1 xmlns="http://www.w3.org/1999/html">SAELGI - Sistema de Apoio para a Empresa Licitante</h1>
 <div ng-show="!authenticated">
     <p>Entre para obter o conteudo.</p>
 </div>
-<div ng-show="authenticated && !controller.editar">
+<div ng-show="authenticated && !controller.showEditar">
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Lista de Licitações</span></div>
@@ -28,8 +28,8 @@
                     <td><span ng-bind="lic.dataEntregaProposta"></span></td>
                     <td><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
                     <td>
-                        <button type="button" ng-click="controller.edit(lic.codigo, lic)" class="btn btn-success custom-width">Editar</button>
-                        <button type="button" ng-click="controller.excluir(lic.codigo)" class="btn btn-danger custom-width">Excluir</button>
+                        <button type="button" ng-click="controller.btnEditar(lic.codigo, lic)" class="btn btn-success custom-width">Editar</button>
+                        <button type="button" ng-click="controller.btnExcluir(lic.codigo)" class="btn btn-danger custom-width">Excluir</button>
                     </td>
                 </tr>
                 </tbody>
@@ -39,5 +39,33 @@
 </div>
 
 
-<div ng-show="authenticated && controller.editar">
+<div ng-show="authenticated && controller.showEditar">
+    <form role="form" ng-submit="controller.formEditar()">
+        <div class="form-group">
+            <label for="numLicitacao">Numero Licitação:</label>
+            <input type="text" class="form-control" id="numLicitacao" name="numLicitacao" ng-model="controller.licitacao.numeroEdital" style="width: 50%;"/>
+        </div>
+        <div class="form-group">
+            <label for="orgao">Orgão:</label>
+            <input type="text" class="form-control" id="orgao" name="orgao" ng-model="controller.licitacao.orgao.nomeOrgao" style="width: 50%;"/>
+        </div>
+        <div class="form-group">
+            <label for="modalidade">Modalidade:</label>
+            <input type="text" class="form-control" id="modalidade" name="modalidade" ng-model="controller.licitacao.modalidade.nomeModalidade" style="width: 50%;"/>
+        </div>
+        <div class="form-group">
+            <label for="abertura">Abertura:</label>
+            <input type="text" class="form-control" id="abertura" name="abertura" ng-model="controller.licitacao.dataDeAbertura" style="width: 50%;"/>
+        </div>
+        <div class="form-group">
+            <label for="dataEntregaProposta">Proposta:</label>
+            <input type="text" class="form-control" id="dataEntregaProposta" name="dataEntregaProposta" ng-model="controller.licitacao.dataEntregaProposta" style="width: 50%;"/>
+        </div>
+        <div class="form-group">
+            <label for="dataEntregaDocumentacao">Entrega Docs:</label>
+            <input type="text" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacao" style="width: 50%;"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Editar</button>
+        <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>
+    </form>
 </div>

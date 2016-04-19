@@ -84,30 +84,52 @@ function($rootScope, $http, $location, $route) {
 	)
 }).controller('licitacao', function($http, $rootScope) {
 	var self = this;
+	self.showEditar = false;
 
-	self.editar = false;
-
-	self.excluir = function(codigo) {
+	self.btnExcluir = function(codigo) {
     	$http.delete('/saelgi/licitacoes/' + codigo, {}).finally(
     	    function() {
+            console.log("Licitação removida")
     		$http.get('/saelgi/licitacoes').then(
-                    function(response) {
-                        console.log("Licitação removida")
-                        self.licitacoes = response.data;
-                    }
-            	)
+                function(response) {
+                    self.licitacoes = response.data;
+                }
+            )
     	});
     }
 
-    self.edit = function(codigo) {
-        $http.put('/saelgi/licitacoes/' + codigo, {}).finally(
-            function() {
-            self.editar = true;
+    self.btnEditar = function(codigo) {
+        $http.get('/saelgi/licitacoes/' + codigo, {}).then(
+            function(response) {
+            self.showEditar = true;
+            self.licitacao = response.data;
             $http.get('/saelgi/licitacoes').then(
                 function(response) {
                     console.log("Editar licitação")
                 }
             )
+        });
+    }
+
+    self.btnCancelar = function() {
+        $http.get('/saelgi/licitacoes').then(
+                function(response) {
+                    console.log("Licitações listadas")
+                    self.licitacoes = response.data;
+                }
+            )
+    }
+
+    self.formEditar = function() {
+        $http.post('/saelgi/licitacoes/', {}).finally(
+            function(response) {
+            self.showEditar = false;
+            $rootScope.licitacao = self.licitacao;
+            $http.get('/saelgi/licitacoes').then(
+              function(response) {
+                  console.log("Licitacao editada")
+              }
+          )
         });
     }
 

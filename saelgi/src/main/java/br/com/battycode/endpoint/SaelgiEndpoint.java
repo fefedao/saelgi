@@ -32,23 +32,21 @@ public class SaelgiEndpoint {
 		model.put("content", "Mapa licitatorio");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/licitacoes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Licitacao>> listaLicitacoes() {
+	public ResponseEntity<List<Licitacao>> getLicitacoes() {
 		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
 		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/licitacoes/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Licitacao> getLicitacao(@PathVariable("codigo") Integer codigo) {
+		Licitacao licitacao = licitacaoService.obterLicitacao(codigo);
+		return new ResponseEntity<>(licitacao, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/licitacoes/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Licitacao>> deleteLicitacao(@PathVariable("codigo") Integer codigo) {
+	public void deleteLicitacao(@PathVariable("codigo") Integer codigo) {
 		licitacaoService.removerLicitacao(codigo);
-		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
-		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/licitacoes/{codigo}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Licitacao> updateItem(@PathVariable("codigo") Integer codigo) {
-		//Licitacao licitacao = licitacaoService.obterLicitacao(codigo);
-		return new ResponseEntity<>(new Licitacao(), HttpStatus.OK);
 	}
 }
