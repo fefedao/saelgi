@@ -100,23 +100,23 @@ public class LicitacaoDAOImpl implements LicitacaoDAO{
     public void excluirLicitacao(Integer codigoLicitacao) {
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE licitacao SET flagExcluido = 'S' WHERE codigo = " + codigoLicitacao.toString() );
+        sb.append("UPDATE licitacao SET flagExcluido = 'S' WHERE codigo = " + codigoLicitacao.toString());
         jdbctemplate.execute(sb.toString());
     }
 
     @Override
-    public void editLicitacao(Integer codigo) {
+    public void atualizarLicitacao(Licitacao licitacao) {
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE licitacao SET ");
-        sb.append(" ");
-        sb.append(" ");
-        sb.append(" ");
-        sb.append(" ");
-        sb.append(" ");
-        sb.append(" ");
-        sb.append(" ");
-        sb.append("WHERE codigo = " + codigo);
-        jdbctemplate.execute(sb.toString());
+        sb.append("codigoOrgao = ? ");
+        sb.append("dataDeAbertura = ? ");
+        sb.append("dataEntregaProposta = ? ");
+        sb.append("dataEntregaDocumentacao = ?");
+        sb.append("codigoModalidade = ? ");
+        sb.append("numeroEdital = ? ");
+        sb.append("WHERE codigo = " + licitacao.getCodigo());
+        Object[] params = {licitacao.getOrgao().getCodigo(), licitacao.getDataDeAbertura(), licitacao.getDataEntregaProposta(), licitacao.getDataEntregaDocumentacao(), licitacao.getModalidade().getCodigo(), licitacao.getNumeroEdital()};
+        jdbctemplate.update(sb.toString(), params);
     }
 }

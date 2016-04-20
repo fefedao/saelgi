@@ -86,8 +86,15 @@ function($rootScope, $http, $location, $route) {
 	var self = this;
 	self.showEditar = false;
 
+	$http.get('/saelgi/licitacoes').then(
+        function(response) {
+            console.log("licitacoes listadas")
+            self.licitacoes = response.data;
+        }
+	)
+
 	self.btnExcluir = function(codigo) {
-    	$http.delete('/saelgi/licitacoes/' + codigo, {}).finally(
+    	$http.delete('/saelgi/licitacoes/' + codigo).finally(
     	    function() {
             console.log("licitacao excluida")
     		$http.get('/saelgi/licitacoes').then(
@@ -99,13 +106,27 @@ function($rootScope, $http, $location, $route) {
     }
 
     self.btnEditar = function(codigo) {
-        $http.get('/saelgi/licitacoes/' + codigo, {}).then(
+        $http.get('/saelgi/licitacoes/' + codigo).then(
             function(response) {
             self.showEditar = true;
             self.licitacao = response.data;
             $http.get('/saelgi/licitacoes').then(
                 function(response) {
                     console.log("editar licitacao")
+                }
+            )
+        });
+    }
+
+    self.formLicitacao = function() {
+        $http.post('/saelgi/criarEditarLicitacao', self.licitacao).then(
+            function() {
+            self.showEditar = false;
+            console.log("licitacao editada")
+            $http.get('/saelgi/licitacoes').then(
+                function(response) {
+                    console.log("licitacoes listadas")
+                    self.licitacoes = response.data;
                 }
             )
         });
@@ -120,25 +141,5 @@ function($rootScope, $http, $location, $route) {
             }
         )
     }
-
-    self.formEditar = function() {
-        $http.post('/saelgi/licitacoes/', {}).finally(
-            function(response) {
-            self.showEditar = false;
-            $rootScope.licitacao = self.licitacao;
-            $http.get('/saelgi/licitacoes').then(
-              function(response) {
-                  console.log("licitacao editada")
-              }
-          )
-        });
-    }
-
-	$http.get('/saelgi/licitacoes').then(
-        function(response) {
-            console.log("licitacoes listadas")
-            self.licitacoes = response.data;
-        }
-	)
 
 });

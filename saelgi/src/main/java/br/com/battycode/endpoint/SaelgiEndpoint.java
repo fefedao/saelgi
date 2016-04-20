@@ -49,4 +49,9 @@ public class SaelgiEndpoint {
 	public void deleteLicitacao(@PathVariable("codigo") Integer codigo) {
 		licitacaoService.removerLicitacao(codigo);
 	}
+
+	@RequestMapping(value = "/criarEditarLicitacao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void criarEditarLicitacao(@RequestBody Licitacao licitacao) {
+		licitacaoService.atualizarLicitacao(licitacao);
+	}
 }

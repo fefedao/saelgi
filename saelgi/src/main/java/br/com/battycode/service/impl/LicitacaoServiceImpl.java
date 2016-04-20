@@ -28,8 +28,8 @@ public class LicitacaoServiceImpl implements LicitacaoService{
     }
 
     @Override
-    public void editLicitacao(Integer codigo){
-        licitacaoDAO.editLicitacao(codigo);
+    public void atualizarLicitacao(Licitacao licitacao) {
+        licitacaoDAO.atualizarLicitacao(licitacao);
     }
 
     @Override

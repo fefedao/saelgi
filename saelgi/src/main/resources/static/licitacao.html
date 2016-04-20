@@ -40,7 +40,7 @@
 
 
 <div ng-show="authenticated && controller.showEditar">
-    <form role="form" ng-submit="controller.formEditar()">
+    <form role="form" ng-submit="controller.formLicitacao()" name="formLicitacao">
         <div class="form-group">
             <label for="numLicitacao">Numero Licitação:</label>
             <input type="text" class="form-control" id="numLicitacao" name="numLicitacao" ng-model="controller.licitacao.numeroEdital" style="width: 50%;"/>
@@ -65,7 +65,7 @@
             <label for="dataEntregaDocumentacao">Entrega Docs:</label>
             <input type="text" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacao" style="width: 50%;"/>
         </div>
-        <button type="submit" class="btn btn-primary">Editar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
         <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>
     </form>
 </div>

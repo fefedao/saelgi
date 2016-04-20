@@ -15,5 +15,5 @@ public interface LicitacaoDAO {
 
     void excluirLicitacao(Integer codigoLicitacao);
 
-    void editLicitacao(Integer codigo);
+    void atualizarLicitacao(Licitacao licitacao);
 }
