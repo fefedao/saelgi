@@ -1,8 +1,11 @@
 package br.com.battycode.dto;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 /**
  * Created by fefedo on 14/04/16.
  */
+@JsonAutoDetect
 public class Orgao {
 
     private Integer codigo;

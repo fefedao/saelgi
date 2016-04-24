@@ -110,12 +110,23 @@ function($rootScope, $http, $location, $route) {
             function(response) {
             self.showEditar = true;
             self.licitacao = response.data;
-            $http.get('/saelgi/licitacoes').then(
+            self.licitacao.dataDeAberturaLong = new Date(self.licitacao.dataDeAberturaLong);
+            self.licitacao.dataEntregaPropostaLong = new Date(self.licitacao.dataEntregaPropostaLong);
+            self.licitacao.dataEntregaDocumentacaoLong = new Date(self.licitacao.dataEntregaDocumentacaoLong);
+            $http.get('/saelgi/modalidades').then(
                 function(response) {
-                    console.log("editar licitacao")
+                    console.log("modalidades listadas")
+                    self.modalidades = response.data;
+                }
+            )
+            $http.get('/saelgi/orgaos').then(
+                function(response) {
+                    console.log("orgaos listados")
+                    self.orgaos = response.data;
                 }
             )
         });
+
     }
 
     self.formLicitacao = function() {

@@ -24,7 +24,7 @@ public class LicitacaoDAOImpl implements LicitacaoDAO{
     private DataSource datasource;
 
     @Override
-    public List<Licitacao> findAll() {
+    public List<Licitacao> findAllLicitacao() {
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT l.codigo, l.numeroEdital, l.dataDeAbertura, l.dataEntregaDocumentacao, l.dataEntregaProposta, l.codigoModalidade, m.nomeModalidade, l.codigoOrgao, o.nomeOrgao ");
@@ -109,14 +109,35 @@ public class LicitacaoDAOImpl implements LicitacaoDAO{
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE licitacao SET ");
-        sb.append("codigoOrgao = ? ");
-        sb.append("dataDeAbertura = ? ");
-        sb.append("dataEntregaProposta = ? ");
-        sb.append("dataEntregaDocumentacao = ?");
-        sb.append("codigoModalidade = ? ");
+        sb.append("codigoOrgao = ?, ");
+        sb.append("dataDeAbertura = ?, ");
+        sb.append("dataEntregaProposta = ?, ");
+        sb.append("dataEntregaDocumentacao = ?, ");
+        sb.append("codigoModalidade = ?, ");
         sb.append("numeroEdital = ? ");
         sb.append("WHERE codigo = " + licitacao.getCodigo());
         Object[] params = {licitacao.getOrgao().getCodigo(), licitacao.getDataDeAbertura(), licitacao.getDataEntregaProposta(), licitacao.getDataEntregaDocumentacao(), licitacao.getModalidade().getCodigo(), licitacao.getNumeroEdital()};
         jdbctemplate.update(sb.toString(), params);
     }
+
+    @Override
+    public List<Modalidade> obterModalidades() {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT m.codigo, m.nomeModalidade ");
+        sb.append("FROM modalidade m ");
+        sb.append("WHERE m.flagExcluido = 'N'");
+
+        return jdbctemplate.query(sb.toString(), new RowMapper<Modalidade>() {
+            @Override
+            public Modalidade mapRow(ResultSet resultSet, int i) throws SQLException {
+                Modalidade modalidade = new Modalidade();
+                modalidade.setCodigo(resultSet.getInt("codigo"));
+                modalidade.setNomeModalidade(resultSet.getString("nomeModalidade"));
+                return modalidade;
+            }
+        });
+    }
+
+
 }

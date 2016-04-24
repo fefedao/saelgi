@@ -1,6 +1,8 @@
 package br.com.battycode.service;
 
 import br.com.battycode.dto.Licitacao;
+import br.com.battycode.dto.Modalidade;
+import br.com.battycode.dto.Orgao;
 
 import java.util.List;
 
@@ -16,4 +18,8 @@ public interface LicitacaoService {
     void removerLicitacao(Integer codigo);
 
     void atualizarLicitacao(Licitacao licitacao);
+
+    List<Modalidade> obterTodasModalidades();
+
+    List<Orgao> obterOrgaos();
 }

@@ -24,9 +24,9 @@
                     <td><span ng-bind="lic.numeroEdital"></span></td>
                     <td><span ng-bind="lic.orgao.nomeOrgao"></span></td>
                     <td><span ng-bind="lic.modalidade.nomeModalidade"></span></td>
-                    <td><span ng-bind="lic.dataDeAbertura"></span></td>
-                    <td><span ng-bind="lic.dataEntregaProposta"></span></td>
-                    <td><span ng-bind="lic.dataEntregaDocumentacao"></span></td>
+                    <td><span ng-bind="lic.dataDeAberturaText"></span></td>
+                    <td><span ng-bind="lic.dataEntregaPropostaText"></span></td>
+                    <td><span ng-bind="lic.dataEntregaDocumentacaoText"></span></td>
                     <td>
                         <button type="button" ng-click="controller.btnEditar(lic.codigo, lic)" class="btn btn-success custom-width">Editar</button>
                         <button type="button" ng-click="controller.btnExcluir(lic.codigo)" class="btn btn-danger custom-width">Excluir</button>
@@ -43,27 +43,28 @@
     <form role="form" ng-submit="controller.formLicitacao()" name="formLicitacao">
         <div class="form-group">
             <label for="numLicitacao">Numero Licitação:</label>
-            <input type="text" class="form-control" id="numLicitacao" name="numLicitacao" ng-model="controller.licitacao.numeroEdital" style="width: 50%;"/>
+            <input type="text" class="form-control" id="numLicitacao" name="numLicitacao" ng-model="controller.licitacao.numeroEdital" style="width: 20%;"/>
         </div>
         <div class="form-group">
             <label for="orgao">Orgão:</label>
-            <input type="text" class="form-control" id="orgao" name="orgao" ng-model="controller.licitacao.orgao.nomeOrgao" style="width: 50%;"/>
+            <!--<input type="text" class="form-control" id="orgao" name="orgao" ng-model="controller.licitacao.orgao.nomeOrgao" style="width: 50%;"/>-->
+            <select name="orgao" class="form-control" id="orgao" ng-options="orgao.nomeOrgao for orgao in controller.orgaos track by orgao.codigo" ng-model="controller.licitacao.orgao" style="width: 50%;" />
         </div>
         <div class="form-group">
             <label for="modalidade">Modalidade:</label>
-            <input type="text" class="form-control" id="modalidade" name="modalidade" ng-model="controller.licitacao.modalidade.nomeModalidade" style="width: 50%;"/>
+            <select name="modalidade" class="form-control" id="modalidade" ng-options="modalidade.nomeModalidade for modalidade in controller.modalidades track by modalidade.codigo" ng-model="controller.licitacao.modalidade" style="width: 25%;" />
         </div>
         <div class="form-group">
-            <label for="abertura">Abertura:</label>
-            <input type="text" class="form-control" id="abertura" name="abertura" ng-model="controller.licitacao.dataDeAbertura" style="width: 50%;"/>
+            <label for="dataDeAbertura">Abertura:</label>
+            <input type="date" class="form-control" id="dataDeAbertura" name="dataDeAbertura" ng-model="controller.licitacao.dataDeAberturaLong" style="width: 14%;"/>
         </div>
         <div class="form-group">
             <label for="dataEntregaProposta">Proposta:</label>
-            <input type="text" class="form-control" id="dataEntregaProposta" name="dataEntregaProposta" ng-model="controller.licitacao.dataEntregaProposta" style="width: 50%;"/>
+            <input type="date" class="form-control" id="dataEntregaProposta" name="dataEntregaProposta" ng-model="controller.licitacao.dataEntregaPropostaLong" style="width: 14%;"/>
         </div>
         <div class="form-group">
             <label for="dataEntregaDocumentacao">Entrega Docs:</label>
-            <input type="text" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacao" style="width: 50%;"/>
+            <input type="date" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacaoLong" style="width: 14%;"/>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>

@@ -1,14 +1,14 @@
-INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (1, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 1, '213/2010', 'N');
-INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (2, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 3, '251/2010', 'N');
-INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (4, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 1, '288/2010', 'N');
-INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (1, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 2, '219/2010', 'N');
-INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (7, '2015-12-31 09:00:00', '2015-12-31 09:00:00', '2015-12-31 09:00:00', 4, '223/2010', 'N');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 'N');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 'N');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 'N');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N');
+INSERT INTO licitacao (codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) VALUES (7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N');
 
 
-INSERT INTO modalidade (nomeModalidade) VALUES ('Pregão Presencial');
-INSERT INTO modalidade (nomeModalidade) VALUES ('Pregão Eletrônico');
-INSERT INTO modalidade (nomeModalidade) VALUES ('Tomada de Preços');
-INSERT INTO modalidade (nomeModalidade) VALUES ('Concorrência');
+INSERT INTO modalidade (nomeModalidade, flagExcluido) VALUES ('Pregão Presencial', 'N');
+INSERT INTO modalidade (nomeModalidade, flagExcluido) VALUES ('Pregão Eletrônico', 'N');
+INSERT INTO modalidade (nomeModalidade, flagExcluido) VALUES ('Tomada de Preços', 'N');
+INSERT INTO modalidade (nomeModalidade, flagExcluido) VALUES ('Concorrência', 'N');
 
 INSERT INTO orgao (esfera, nomeOrgao, email, cnpj, codigoEndereco, flagExcluido) VALUES (1, 'Secretaria da Saúde de Florianópolis', 'secretariadasaude@pmf.gov.br', '04.865.161/0001-07', 1, 'N');
 INSERT INTO orgao (esfera, nomeOrgao, email, cnpj, codigoEndereco, flagExcluido) VALUES (2, 'Departamento de Desenvolvimento do Estado de Santa Catarina', 'dpmf@sc.gov.br', '53.412.266/0001-08', 2, 'N');

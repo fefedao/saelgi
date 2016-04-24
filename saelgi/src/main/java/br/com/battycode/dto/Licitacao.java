@@ -4,8 +4,9 @@ import br.com.battycode.util.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @JsonAutoDetect
 public class Licitacao {
@@ -17,6 +18,15 @@ public class Licitacao {
     private Date dataDeAbertura;
     private Date dataEntregaProposta;
     private Date dataEntregaDocumentacao;
+
+    private String dataDeAberturaLong;
+    private String dataEntregaPropostaLong;
+    private String dataEntregaDocumentacaoLong;
+
+    private String dataDeAberturaText;
+    private String dataEntregaPropostaText;
+    private String dataEntregaDocumentacaoText;
+
 
     public Licitacao() {
     }
@@ -54,9 +64,7 @@ public class Licitacao {
     }
 
     @JsonSerialize(using = JsonDateSerializer.class)
-    public Date getDataDeAbertura() {
-        return dataDeAbertura;
-    }
+    public Date getDataDeAbertura() { return dataDeAbertura; }
 
     public void setDataDeAbertura(Date dataDeAbertura) {
         this.dataDeAbertura = dataDeAbertura;
@@ -80,5 +88,57 @@ public class Licitacao {
         this.dataEntregaDocumentacao = dataEntregaDocumentacao;
     }
 
+    //date angular
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
+    public long getDataDeAberturaLong() {
+        return dataDeAbertura.getTime();
+    }
+
+    public void setDataDeAberturaLong(String dataDeAberturaLong) {
+        try {
+            this.dataDeAbertura = dateFormat.parse(dataDeAberturaLong);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public long getDataEntregaPropostaLong() {
+        return dataEntregaProposta.getTime();
+    }
+
+    public void setDataEntregaPropostaLong(String dataEntregaPropostaLong) {
+        try {
+            this.dataEntregaProposta = dateFormat.parse(dataEntregaPropostaLong);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public long getDataEntregaDocumentacaoLong() {
+        return dataEntregaDocumentacao.getTime();
+    }
+
+    public void setDataEntregaDocumentacaoLong(String dataEntregaDocumentacaoLong) {
+        try {
+            this.dataEntregaDocumentacao = dateFormat.parse(dataEntregaDocumentacaoLong);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //date apresentacao
+    private static final SimpleDateFormat dateFormatText = new SimpleDateFormat("dd/MM/yyyy");
+
+    public String getDataDeAberturaText() {
+        return dateFormatText.format(this.dataDeAbertura);
+    }
+
+    public String getDataEntregaPropostaText() {
+        return dateFormatText.format(this.dataEntregaProposta);
+    }
+
+    public String getDataEntregaDocumentacaoText() {
+        return dateFormatText.format(this.dataEntregaDocumentacao);
+    }
 }

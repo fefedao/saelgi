@@ -18,7 +18,7 @@
 		    	<div ng-controller="navigation as nav" class=".col-xs-push-12 ">
 				    <ul class="nav" style>
 				    	<li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li>
-						<li><a href="">Documentação</a></li>
+						<li ng-show="authenticated"  ><a href="">Documentação</a></li>
 				    </ul>
 				</div>
 			</td>
@@ -26,7 +26,7 @@
 				<div ng-controller="navigation as nav" class="container">
 					<ul class="nav nav-pills" role="tablist">
 						<li ng-class="{active:nav.tab('home')}"><a href="#/">Inicio</a></li>
-						<li ng-class="{active:nav.tab('navigation')}"><a href="#/login">Entrar</a></li>
+						<li ng-show="!authenticated" ng-class="{active:nav.tab('navigation')}"><a href="#/login">Entrar</a></li>
 						<!--  <li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li> -->
 						<li><a href="">Configurações</a></li>
 						<li ng-show="authenticated"><a href="" ng-click="nav.logout()">Sair</a></li>

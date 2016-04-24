@@ -27,7 +27,8 @@ CREATE TABLE orgao (
 
 CREATE TABLE modalidade (
   codigo    INTEGER IDENTITY PRIMARY KEY,
-  nomeModalidade VARCHAR(20)
+  nomeModalidade VARCHAR(20),
+  flagExcluido VARCHAR(1)
 );
 
 --DROP TABLE documentoEmpresa IF EXISTS;
