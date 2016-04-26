@@ -10,4 +10,6 @@ import java.util.List;
 public interface OrgaoService {
 
     List<Orgao> obterOrgaos();
+
+    void removerOrgao(Integer codigo);
 }

@@ -20,4 +20,11 @@ public class OrgaoServiceImpl implements OrgaoService {
     public List<Orgao> obterOrgaos(){
         return orgaoDAO.findAllOrgao();
     }
+
+    @Override
+    public void removerOrgao(Integer codigo) {
+        orgaoDAO.removerOrgao(codigo);
+    }
+
+
 }

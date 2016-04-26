@@ -64,4 +64,12 @@ public class OrgaoDAOImpl implements OrgaoDAO{
             }
         });
     }
+
+    @Override
+    public void removerOrgao(Integer codigo) {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE orgao SET flagExcluido = 'S' WHERE codigo = " + codigo.toString());
+        jdbctemplate.execute(sb.toString());
+    }
 }

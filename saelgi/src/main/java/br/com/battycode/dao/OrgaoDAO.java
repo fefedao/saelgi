@@ -13,4 +13,6 @@ public interface OrgaoDAO {
 
     List<Orgao> findAllOrgao();
 
+    void removerOrgao(Integer codigo);
+
 }
