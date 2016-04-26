@@ -72,4 +72,30 @@ public class OrgaoDAOImpl implements OrgaoDAO{
         sb.append("UPDATE orgao SET flagExcluido = 'S' WHERE codigo = " + codigo.toString());
         jdbctemplate.execute(sb.toString());
     }
+
+    @Override
+    public void criarOrgao(Orgao orgao) {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO orgao ");
+        sb.append("(nomeOrgao, email, cnpj, codigoEndereco, flExcluido) ");
+        sb.append(" VALUES ");
+        sb.append("(?, ?, ?, ?, 'N')");
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco()};
+        jdbctemplate.update(sb.toString(), params);
+    }
+
+    @Override
+    public void editarOrgao(Orgao orgao) {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE orgao SET ");
+        sb.append("nomeOrgao = ?, ");
+        sb.append("email = ?, ");
+        sb.append("cnpj = ?, ");
+        sb.append("codigoEndereco = ?, ");
+        sb.append("WHERE codigo = " + orgao.getCodigo());
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco()};
+        jdbctemplate.update(sb.toString(), params);
+    }
 }

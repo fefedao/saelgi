@@ -1,5 +1,6 @@
 package br.com.battycode.dao;
 
+import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Orgao;
 
 import java.util.List;
@@ -14,5 +15,9 @@ public interface OrgaoDAO {
     List<Orgao> findAllOrgao();
 
     void removerOrgao(Integer codigo);
+
+    void editarOrgao(Orgao orgao);
+
+    void criarOrgao(Orgao orgao);
 
 }

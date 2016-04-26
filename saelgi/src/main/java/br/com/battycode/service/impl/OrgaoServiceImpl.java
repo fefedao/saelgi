@@ -26,5 +26,13 @@ public class OrgaoServiceImpl implements OrgaoService {
         orgaoDAO.removerOrgao(codigo);
     }
 
+    @Override
+    public void criarEditarOrgao(Orgao orgao) {
+        if (orgao.getCodigo() == null){
+            orgaoDAO.criarOrgao(orgao);
+            return;
+        }
+        orgaoDAO.editarOrgao(orgao);
+    }
 
 }

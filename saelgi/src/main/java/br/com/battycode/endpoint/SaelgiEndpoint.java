@@ -83,4 +83,9 @@ public class SaelgiEndpoint {
 	public void deleteOrgao(@PathVariable("codigo") Integer codigo) {
 		orgaoService.removerOrgao(codigo);
 	}
+
+	@RequestMapping(value = "/criarEditarOrgao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void criarEditarOrgao(@RequestBody Orgao orgao) {
+		orgaoService.criarEditarOrgao(orgao);
+	}
 }
