@@ -14,6 +14,10 @@ function($routeProvider, $httpProvider) {
 		templateUrl : 'licitacao.html',
 		controller : 'licitacao',
 		controllerAs: 'controller'
+	}).when('/orgaos', {
+    		templateUrl : 'orgao.html',
+    		controller : 'orgao',
+    		controllerAs: 'controller'
 	}).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -102,7 +106,7 @@ function($rootScope, $http, $location, $route) {
                 self.modalidades = response.data;
             }
         );
-        $http.get('/saelgi/orgaos').then(
+        $http.get('/saelgi/orgaosLicitacao').then(
             function(response) {
                 console.log("orgaos listados")
                 self.orgaos = response.data;
@@ -126,7 +130,7 @@ function($rootScope, $http, $location, $route) {
                         self.modalidades = response.data;
                     }
                 )
-                $http.get('/saelgi/orgaos').then(
+                $http.get('/saelgi/orgaosLicitacao').then(
                     function(response) {
                         console.log("orgaos listados")
                         self.orgaos = response.data;
@@ -175,4 +179,15 @@ function($rootScope, $http, $location, $route) {
         )
     }
 
+}).controller('orgao', function($http, $rootScope) {
+	var self = this;
+	self.showEditar = false;
+    self.showAdicionar = false;
+
+	$http.get('/saelgi/orgaos').then(
+        function(response) {
+            console.log("orgaos listados")
+            self.orgaos = response.data;
+        }
+	)
 });

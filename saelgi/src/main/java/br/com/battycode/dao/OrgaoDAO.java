@@ -11,4 +11,6 @@ public interface OrgaoDAO {
 
     List<Orgao> findAllOrgaosLicitacao();
 
+    List<Orgao> findAllOrgao();
+
 }

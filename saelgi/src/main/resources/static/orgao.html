@@ -1,0 +1,60 @@
+<h1 xmlns="http://www.w3.org/1999/html">SAELGI - Sistema de Apoio para a Empresa Licitante</h1>
+<div ng-show="!authenticated">
+    <p>Entre para obter o conteudo.</p>
+</div>
+<div ng-show="authenticated && !controller.showEditar && !controller.showAdicionar">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Lista de Licitações</span></div>
+        <div class="tablecontainer">
+            <table class="table table-hover">
+                <thead>
+                <tr align="center">
+                    <th style="text-align: center;">CNPJ</th>
+                    <th style="text-align: center;">Orgão</th>
+                    <th style="text-align: center;">email</th>
+                    <th style="text-align: center;">Endereco</th>
+                    <th align="center" width="20%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr align="center" ng-repeat="org in controller.orgaos">
+                    <td><span ng-bind="org.cnpj"></span></td>
+                    <td><span ng-bind="org.nomeOrgao"></span></td>
+                    <td><span ng-bind="org.email"></span></td>
+                    <td><span ng-bind="org.codigoEndereco"></span></td>
+                    <td>
+                        <button type="button" ng-click="controller.btnEditar(org.codigo, org)" class="btn btn-success custom-width">Editar</button>
+                        <button type="button" ng-click="controller.btnExcluir(org.codigo)" class="btn btn-danger custom-width">Excluir</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button type="button" ng-click="controller.btnAdicionar(btnAdicionar)" class="btn btn-success custom-width">Adicionar novo Orgão</button>
+</div>
+
+
+<div ng-show="authenticated && (controller.showEditar || controller.showAdicionar)">
+    <form role="form" ng-submit="controller.formOrgao()" name="formOrgao">
+        <div class="form-group">
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" class="form-control" id="cnpj" name="cnpj" ng-model="controller.orgao.cnpj" style="width: 20%;"/>
+        </div>
+        <div class="form-group">
+            <label for="orgao">Orgão:</label>
+            <input type="text" class="form-control" id="orgao" name="orgao" ng-model="controller.orgao.nomeOrgao" style="width: 30%;"/>
+        </div>
+        <div class="form-group">
+            <label for="email">email:</label>
+            <input type="text" class="form-control" id="email" name="email" ng-model="controller.orgao.email" style="width: 30%;"/>
+        </div>
+        <div class="form-group">
+            <label for="endereco">Endereço:</label>
+            <input type="text" class="form-control" id="endereco" name="endereco" ng-model="controller.orgao.codigoEndereco" style="width: 30%;"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>
+    </form>
+</div>

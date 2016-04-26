@@ -4,6 +4,7 @@ import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Modalidade;
 import br.com.battycode.dto.Orgao;
 import br.com.battycode.service.LicitacaoService;
+import br.com.battycode.service.OrgaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +22,9 @@ public class SaelgiEndpoint {
 
 	@Autowired
 	private LicitacaoService licitacaoService;
+
+	@Autowired
+	private OrgaoService orgaoService;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public Principal user(Principal user) {
@@ -63,9 +67,15 @@ public class SaelgiEndpoint {
 		return new ResponseEntity<>(modalidades, HttpStatus.OK);
 	}
 
-    @RequestMapping(value = "/orgaos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Orgao>> getOrgaos() {
+    @RequestMapping(value = "/orgaosLicitacao", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Orgao>> getOrgaosLicitacao() {
         List<Orgao> orgaos = licitacaoService.obterOrgaos();
         return new ResponseEntity<>(orgaos, HttpStatus.OK);
     }
+
+	@RequestMapping(value = "/orgaos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Orgao>> getOrgaos() {
+		List<Orgao> orgaos = orgaoService.obterOrgaos();
+		return new ResponseEntity<>(orgaos, HttpStatus.OK);
+	}
 }

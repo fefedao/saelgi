@@ -42,4 +42,26 @@ public class OrgaoDAOImpl implements OrgaoDAO{
             }
         });
     }
+
+    @Override
+    public List<Orgao> findAllOrgao() {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT o.codigo, o.nomeOrgao, o.email, o.cnpj, o.codigoEndereco ");
+        sb.append("FROM orgao o ");
+        sb.append("WHERE o.flagExcluido = 'N' ");
+
+        return jdbctemplate.query(sb.toString(), new RowMapper<Orgao>() {
+            @Override
+            public Orgao mapRow(ResultSet resultSet, int i) throws SQLException {
+                Orgao orgao = new Orgao();
+                orgao.setCodigo(resultSet.getInt("codigo"));
+                orgao.setNomeOrgao(resultSet.getString("nomeOrgao"));
+                orgao.setEmail(resultSet.getString("email"));
+                orgao.setCnpj(resultSet.getString("cnpj"));
+                orgao.setCodigoEndereco(resultSet.getInt("codigoEndereco"));
+                return orgao;
+            }
+        });
+    }
 }
