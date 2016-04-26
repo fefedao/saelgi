@@ -2,7 +2,7 @@
 <div ng-show="!authenticated">
     <p>Entre para obter o conteudo.</p>
 </div>
-<div ng-show="authenticated && !controller.showEditar">
+<div ng-show="authenticated && !controller.showEditar && !controller.showAdicionar">
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Lista de Licitações</span></div>
@@ -36,10 +36,11 @@
             </table>
         </div>
     </div>
+    <button type="button" ng-click="controller.btnAdicionar(btnAdicionar)" class="btn btn-success custom-width">Adicionar nova Licitação</button>
 </div>
 
 
-<div ng-show="authenticated && controller.showEditar">
+<div ng-show="authenticated && (controller.showEditar || controller.showAdicionar)">
     <form role="form" ng-submit="controller.formLicitacao()" name="formLicitacao">
         <div class="form-group">
             <label for="numLicitacao">Numero Licitação:</label>
@@ -47,7 +48,6 @@
         </div>
         <div class="form-group">
             <label for="orgao">Orgão:</label>
-            <!--<input type="text" class="form-control" id="orgao" name="orgao" ng-model="controller.licitacao.orgao.nomeOrgao" style="width: 50%;"/>-->
             <select name="orgao" class="form-control" id="orgao" ng-options="orgao.nomeOrgao for orgao in controller.orgaos track by orgao.codigo" ng-model="controller.licitacao.orgao" style="width: 50%;" />
         </div>
         <div class="form-group">

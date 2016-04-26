@@ -34,8 +34,12 @@ public class LicitacaoServiceImpl implements LicitacaoService{
     }
 
     @Override
-    public void atualizarLicitacao(Licitacao licitacao) {
-        licitacaoDAO.atualizarLicitacao(licitacao);
+    public void criarEditarLicitacao(Licitacao licitacao) {
+        if (licitacao.getCodigo() == null){
+            licitacaoDAO.criarLicitacao(licitacao);
+            return;
+        }
+        licitacaoDAO.editarLicitacao(licitacao);
     }
 
     @Override

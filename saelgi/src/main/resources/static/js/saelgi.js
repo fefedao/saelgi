@@ -85,6 +85,7 @@ function($rootScope, $http, $location, $route) {
 }).controller('licitacao', function($http, $rootScope) {
 	var self = this;
 	self.showEditar = false;
+    self.showAdicionar = false;
 
 	$http.get('/saelgi/licitacoes').then(
         function(response) {
@@ -93,46 +94,66 @@ function($rootScope, $http, $location, $route) {
         }
 	)
 
-	self.btnExcluir = function(codigo) {
-    	$http.delete('/saelgi/licitacoes/' + codigo).finally(
-    	    function() {
-            console.log("licitacao excluida")
-    		$http.get('/saelgi/licitacoes').then(
-                function(response) {
-                    self.licitacoes = response.data;
-                }
-            )
-    	});
+	self.btnAdicionar = function() {
+        self.showAdicionar = true;
+        $http.get('/saelgi/modalidades').then(
+            function(response) {
+                console.log("modalidades listadas")
+                self.modalidades = response.data;
+            }
+        );
+        $http.get('/saelgi/orgaos').then(
+            function(response) {
+                console.log("orgaos listados")
+                self.orgaos = response.data;
+            }
+        );
+        console.log("Adicionar licitacao")
     }
+
 
     self.btnEditar = function(codigo) {
         $http.get('/saelgi/licitacoes/' + codigo).then(
             function(response) {
-            self.showEditar = true;
-            self.licitacao = response.data;
-            self.licitacao.dataDeAberturaLong = new Date(self.licitacao.dataDeAberturaLong);
-            self.licitacao.dataEntregaPropostaLong = new Date(self.licitacao.dataEntregaPropostaLong);
-            self.licitacao.dataEntregaDocumentacaoLong = new Date(self.licitacao.dataEntregaDocumentacaoLong);
-            $http.get('/saelgi/modalidades').then(
+                self.showEditar = true;
+                self.licitacao = response.data;
+                self.licitacao.dataDeAberturaLong = new Date(self.licitacao.dataDeAberturaLong);
+                self.licitacao.dataEntregaPropostaLong = new Date(self.licitacao.dataEntregaPropostaLong);
+                self.licitacao.dataEntregaDocumentacaoLong = new Date(self.licitacao.dataEntregaDocumentacaoLong);
+                $http.get('/saelgi/modalidades').then(
+                    function(response) {
+                        console.log("modalidades listadas")
+                        self.modalidades = response.data;
+                    }
+                )
+                $http.get('/saelgi/orgaos').then(
+                    function(response) {
+                        console.log("orgaos listados")
+                        self.orgaos = response.data;
+                    }
+                )
+                console.log("Adicionar licitacao")
+            }
+        );
+    }
+
+    self.btnExcluir = function(codigo) {
+        $http.delete('/saelgi/licitacoes/' + codigo).finally(
+            function() {
+            console.log("licitacao excluida")
+            $http.get('/saelgi/licitacoes').then(
                 function(response) {
-                    console.log("modalidades listadas")
-                    self.modalidades = response.data;
-                }
-            )
-            $http.get('/saelgi/orgaos').then(
-                function(response) {
-                    console.log("orgaos listados")
-                    self.orgaos = response.data;
+                    self.licitacoes = response.data;
                 }
             )
         });
-
     }
 
     self.formLicitacao = function() {
         $http.post('/saelgi/criarEditarLicitacao', self.licitacao).then(
             function() {
             self.showEditar = false;
+            self.showAdicionar = false;
             console.log("licitacao editada")
             $http.get('/saelgi/licitacoes').then(
                 function(response) {
@@ -146,8 +167,9 @@ function($rootScope, $http, $location, $route) {
     self.btnCancelar = function() {
         $http.get('/saelgi/licitacoes').then(
             function(response) {
-                console.log("edicao licitacao cancelada")
+                console.log("edicao/criacao licitacao cancelada")
                 self.showEditar = false;
+                self.showAdicionar = false;
                 self.licitacoes = response.data;
             }
         )

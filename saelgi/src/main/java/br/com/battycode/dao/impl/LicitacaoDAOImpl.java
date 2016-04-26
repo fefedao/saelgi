@@ -105,7 +105,19 @@ public class LicitacaoDAOImpl implements LicitacaoDAO{
     }
 
     @Override
-    public void atualizarLicitacao(Licitacao licitacao) {
+    public void criarLicitacao(Licitacao licitacao) {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO licitacao ");
+        sb.append("(codigoOrgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, codigoModalidade, numeroEdital, flagExcluido) ");
+        sb.append(" VALUES ");
+        sb.append("(?, ?, ?, ?, ?, ?, 'N')");
+        Object[] params = {licitacao.getOrgao().getCodigo(), licitacao.getDataDeAbertura(), licitacao.getDataEntregaProposta(), licitacao.getDataEntregaDocumentacao(), licitacao.getModalidade().getCodigo(), licitacao.getNumeroEdital()};
+        jdbctemplate.update(sb.toString(), params);
+    }
+
+    @Override
+    public void editarLicitacao(Licitacao licitacao) {
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
         sb.append("UPDATE licitacao SET ");

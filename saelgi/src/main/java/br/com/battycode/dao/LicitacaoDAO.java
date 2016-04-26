@@ -16,7 +16,9 @@ public interface LicitacaoDAO {
 
     void excluirLicitacao(Integer codigoLicitacao);
 
-    void atualizarLicitacao(Licitacao licitacao);
+    void editarLicitacao(Licitacao licitacao);
+
+    void criarLicitacao(Licitacao licitacao);
 
     List<Modalidade> obterModalidades();
 }

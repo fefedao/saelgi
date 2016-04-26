@@ -17,7 +17,7 @@ public interface LicitacaoService {
 
     void removerLicitacao(Integer codigo);
 
-    void atualizarLicitacao(Licitacao licitacao);
+    void criarEditarLicitacao(Licitacao licitacao);
 
     List<Modalidade> obterTodasModalidades();
 

@@ -54,7 +54,7 @@ public class SaelgiEndpoint {
 
 	@RequestMapping(value = "/criarEditarLicitacao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void criarEditarLicitacao(@RequestBody Licitacao licitacao) {
-		licitacaoService.atualizarLicitacao(licitacao);
+		licitacaoService.criarEditarLicitacao(licitacao);
 	}
 
 	@RequestMapping(value = "/modalidades", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
