@@ -14,6 +14,8 @@ public interface OrgaoDAO {
 
     List<Orgao> findAllOrgao();
 
+    Orgao obterOrgao(Integer codigo);
+
     void removerOrgao(Integer codigo);
 
     void editarOrgao(Orgao orgao);

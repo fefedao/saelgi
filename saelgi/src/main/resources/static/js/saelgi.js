@@ -100,6 +100,7 @@ function($rootScope, $http, $location, $route) {
 
 	self.btnAdicionar = function() {
         self.showAdicionar = true;
+        self.licitacao = null;
         $http.get('/saelgi/modalidades').then(
             function(response) {
                 console.log("modalidades listadas")
@@ -112,7 +113,7 @@ function($rootScope, $http, $location, $route) {
                 self.orgaos = response.data;
             }
         );
-        console.log("Adicionar licitacao")
+        console.log("botao adicionar licitacao")
     }
 
 
@@ -136,7 +137,7 @@ function($rootScope, $http, $location, $route) {
                         self.orgaos = response.data;
                     }
                 )
-                console.log("Adicionar licitacao")
+                console.log("editar licitacao")
             }
         );
     }
@@ -144,12 +145,12 @@ function($rootScope, $http, $location, $route) {
     self.btnExcluir = function(codigo) {
         $http.delete('/saelgi/licitacoes/' + codigo).finally(
             function() {
-            console.log("licitacao excluida")
             $http.get('/saelgi/licitacoes').then(
                 function(response) {
                     self.licitacoes = response.data;
                 }
             )
+            console.log("licitacao excluida")
         });
     }
 
@@ -189,5 +190,60 @@ function($rootScope, $http, $location, $route) {
             console.log("orgaos listados")
             self.orgaos = response.data;
         }
-	)
+    )
+
+	self.btnAdicionar = function() {
+        self.showAdicionar = true;
+        self.orgao = null;
+        console.log("botao adicionar orgao")
+    }
+
+    self.btnEditar = function(codigo) {
+        $http.get('/saelgi/orgaos/' + codigo).then(
+            function(response) {
+                self.showEditar = true;
+                self.orgao = response.data;
+                console.log("editar orgao")
+            }
+        );
+    }
+
+    self.btnExcluir = function(codigo) {
+        $http.delete('/saelgi/orgaos/' + codigo).finally(
+            function() {
+            $http.get('/saelgi/orgaos').then(
+                function(response) {
+                    self.orgaos = response.data;
+                }
+            )
+            console.log("orgao excluido")
+        });
+    }
+
+    self.formOrgao = function() {
+        $http.post('/saelgi/criarEditarOrgao', self.orgao).then(
+            function() {
+            self.showEditar = false;
+            self.showAdicionar = false;
+            console.log("orgao editado")
+            $http.get('/saelgi/orgaos').then(
+                function(response) {
+                    console.log("orgaos listados")
+                    self.orgaos = response.data;
+                }
+            )
+        });
+    }
+
+    self.btnCancelar = function() {
+        $http.get('/saelgi/orgaos').then(
+            function(response) {
+                console.log("edicao/criacao orgao cancelada")
+                self.showEditar = false;
+                self.showAdicionar = false;
+                self.orgaos = response.data;
+            }
+        )
+    }
+
 });

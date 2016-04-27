@@ -12,8 +12,6 @@ public enum Esfera {
         this.codigo = codigo;
     }
 
-    private int codigo() { return codigo; }
-
     public static Esfera getEsfera(int codigoEsfera){
         if (codigoEsfera == 1){
             return Esfera.Municipal;

@@ -79,6 +79,12 @@ public class SaelgiEndpoint {
 		return new ResponseEntity<>(orgaos, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/orgaos/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Orgao> getOrgao(@PathVariable("codigo") Integer codigo) {
+		Orgao orgao = orgaoService.obterOrgao(codigo);
+		return new ResponseEntity<>(orgao, HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/orgaos/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteOrgao(@PathVariable("codigo") Integer codigo) {
 		orgaoService.removerOrgao(codigo);

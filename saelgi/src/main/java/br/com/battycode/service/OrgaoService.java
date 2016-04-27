@@ -11,6 +11,8 @@ public interface OrgaoService {
 
     List<Orgao> obterOrgaos();
 
+    Orgao obterOrgao(Integer codigo);
+
     void removerOrgao(Integer codigo);
 
     void criarEditarOrgao(Orgao orgao);

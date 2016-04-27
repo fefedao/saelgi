@@ -47,7 +47,7 @@ public class OrgaoDAOImpl implements OrgaoDAO{
     public List<Orgao> findAllOrgao() {
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT o.codigo, o.nomeOrgao, o.email, o.cnpj, o.codigoEndereco ");
+        sb.append("SELECT o.codigo, o.nomeOrgao, o.email, o.cnpj, o.codigoEndereco, o.esfera ");
         sb.append("FROM orgao o ");
         sb.append("WHERE o.flagExcluido = 'N' ");
 
@@ -60,10 +60,38 @@ public class OrgaoDAOImpl implements OrgaoDAO{
                 orgao.setEmail(resultSet.getString("email"));
                 orgao.setCnpj(resultSet.getString("cnpj"));
                 orgao.setCodigoEndereco(resultSet.getInt("codigoEndereco"));
+                orgao.setEsfera(Esfera.getEsfera(resultSet.getInt("esfera")));
                 return orgao;
             }
         });
     }
+
+    @Override
+    public Orgao obterOrgao(Integer codigo) {
+        JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT o.codigo, o.nomeOrgao, o.email, o.cnpj, o.codigoEndereco, o.esfera ");
+        sb.append("FROM orgao o ");
+        sb.append("WHERE o.flagExcluido = 'N' ");
+        sb.append("AND o.codigo = ?");
+
+        Object[] params = {codigo};
+
+        return jdbctemplate.query(sb.toString(), params, new RowMapper<Orgao>() {
+            @Override
+            public Orgao mapRow(ResultSet resultSet, int i) throws SQLException {
+                Orgao orgao = new Orgao();
+                orgao.setCodigo(resultSet.getInt("codigo"));
+                orgao.setNomeOrgao(resultSet.getString("nomeOrgao"));
+                orgao.setEmail(resultSet.getString("email"));
+                orgao.setCnpj(resultSet.getString("cnpj"));
+                orgao.setCodigoEndereco(resultSet.getInt("codigoEndereco"));
+                orgao.setEsfera(Esfera.getEsfera(resultSet.getInt("esfera")));
+                return orgao;
+            }
+        }).stream().findFirst().orElse(null);
+    }
+
 
     @Override
     public void removerOrgao(Integer codigo) {
@@ -78,10 +106,10 @@ public class OrgaoDAOImpl implements OrgaoDAO{
         JdbcTemplate jdbctemplate = new JdbcTemplate(datasource);
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO orgao ");
-        sb.append("(nomeOrgao, email, cnpj, codigoEndereco, flExcluido) ");
+        sb.append("(nomeOrgao, email, cnpj, codigoEndereco, esfera, flagExcluido) ");
         sb.append(" VALUES ");
-        sb.append("(?, ?, ?, ?, 'N')");
-        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco()};
+        sb.append("(?, ?, ?, ?, ?, 'N')");
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getEsfera(), orgao.getCodigoEndereco()};
         jdbctemplate.update(sb.toString(), params);
     }
 
@@ -94,8 +122,9 @@ public class OrgaoDAOImpl implements OrgaoDAO{
         sb.append("email = ?, ");
         sb.append("cnpj = ?, ");
         sb.append("codigoEndereco = ?, ");
+        sb.append("esfera = ? ");
         sb.append("WHERE codigo = " + orgao.getCodigo());
-        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco()};
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco(), orgao.getEsfera()};
         jdbctemplate.update(sb.toString(), params);
     }
 }

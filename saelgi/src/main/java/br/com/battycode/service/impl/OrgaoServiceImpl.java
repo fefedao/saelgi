@@ -22,6 +22,11 @@ public class OrgaoServiceImpl implements OrgaoService {
     }
 
     @Override
+    public Orgao obterOrgao(Integer codigo) {
+        return orgaoDAO.obterOrgao(codigo);
+    }
+
+    @Override
     public void removerOrgao(Integer codigo) {
         orgaoDAO.removerOrgao(codigo);
     }
@@ -34,5 +39,6 @@ public class OrgaoServiceImpl implements OrgaoService {
         }
         orgaoDAO.editarOrgao(orgao);
     }
+
 
 }
