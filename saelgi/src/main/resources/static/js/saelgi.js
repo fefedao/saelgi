@@ -203,6 +203,12 @@ function($rootScope, $http, $location, $route) {
             function(response) {
                 self.showEditar = true;
                 self.orgao = response.data;
+                $http.get('/saelgi/esferas').then(
+                    function(response) {
+                        console.log("esferas listadas")
+                        self.esferas = response.data;
+                    }
+                )
                 console.log("editar orgao")
             }
         );

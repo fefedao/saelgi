@@ -21,4 +21,8 @@ public enum Esfera {
         }
         return Esfera.Federal;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
 }

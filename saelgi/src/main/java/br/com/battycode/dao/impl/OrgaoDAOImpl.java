@@ -2,8 +2,6 @@ package br.com.battycode.dao.impl;
 
 import br.com.battycode.dao.OrgaoDAO;
 import br.com.battycode.dto.Esfera;
-import br.com.battycode.dto.Licitacao;
-import br.com.battycode.dto.Modalidade;
 import br.com.battycode.dto.Orgao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -124,7 +122,7 @@ public class OrgaoDAOImpl implements OrgaoDAO{
         sb.append("codigoEndereco = ?, ");
         sb.append("esfera = ? ");
         sb.append("WHERE codigo = " + orgao.getCodigo());
-        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco(), orgao.getEsfera()};
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco(), orgao.getEsfera().getCodigo()};
         jdbctemplate.update(sb.toString(), params);
     }
 }

@@ -1,5 +1,6 @@
 package br.com.battycode.endpoint;
 
+import br.com.battycode.dto.Esfera;
 import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Modalidade;
 import br.com.battycode.dto.Orgao;
@@ -12,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 public class SaelgiEndpoint {
@@ -93,5 +91,14 @@ public class SaelgiEndpoint {
 	@RequestMapping(value = "/criarEditarOrgao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void criarEditarOrgao(@RequestBody Orgao orgao) {
 		orgaoService.criarEditarOrgao(orgao);
+	}
+
+	@RequestMapping(value = "/esferas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Esfera>> getEsferas() {
+		List<Esfera> esferas = new ArrayList<>();
+		esferas.add(Esfera.Estadual);
+		esferas.add(Esfera.Federal);
+		esferas.add(Esfera.Municipal);
+		return new ResponseEntity<>(esferas, HttpStatus.OK);
 	}
 }
