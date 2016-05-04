@@ -24,7 +24,7 @@
                     <td><span ng-bind="org.nomeOrgao"></span></td>
                     <td><span ng-bind="org.email"></span></td>
                     <td><span ng-bind="org.esfera"></span></td>
-                    <td><span ng-bind="org.codigoEndereco"></span></td>
+                    <td><span >{{org.endereco.municipio}}/{{org.endereco.uf}}</span></td>
                     <td>
                         <button type="button" ng-click="controller.btnEditar(org.codigo, org)" class="btn btn-success custom-width">Editar</button>
                         <button type="button" ng-click="controller.btnExcluir(org.codigo)" class="btn btn-danger custom-width">Excluir</button>
@@ -58,9 +58,25 @@
         </div>
         <div class="form-group">
             <label for="endereco">Endereço:</label>
-            <input type="text" class="form-control" id="endereco" name="endereco" ng-model="controller.orgao.codigoEndereco" style="width: 30%;"/>
+            <input type="text" class="form-control" id="endereco" name="endereco" ng-model="controller.orgao.endereco.municipio" style="width: 30%;"/>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>
     </form>
 </div>
+
+<script type="text/javascript">
+    $("#cnpj").keydown(function(){
+        try {
+            $("#cnpj").unmask();
+        } catch (e) {}
+
+        var tamanho = $("#cnpj").val().length;
+
+        if(tamanho < 11){
+            $("#cnpj").mask("999.999.999-99");
+        } else {
+            $("#cnpj").mask("99.999.999/9999-99");
+        }
+    });
+</script>

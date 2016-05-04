@@ -19,3 +19,14 @@ INSERT INTO orgao (esfera, nomeOrgao, email, cnpj, codigoEndereco, flagExcluido)
 INSERT INTO orgao (esfera, nomeOrgao, email, cnpj, codigoEndereco, flagExcluido) VALUES (3, 'Advocacia da União - Distrito Federal', 'agcu@advoc.jus.gov.br', '04.865.161/0001-07', 7, 'N');
 INSERT INTO orgao (esfera, nomeOrgao, email, cnpj, codigoEndereco, flagExcluido) VALUES (2, 'Tribunal de Justiça do Mato Grosso do Sul', 'adroghm@tjms.jus.gov.br', '04.865.161/0001-07', 8, 'N');
 
+
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Florianópolis', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('São José', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Palhoça', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Biguaçu', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Santo Amaro da Imperatriz', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Rancho Queimado', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Ituporanga', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Bombinhas', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES ('Blumenau', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+

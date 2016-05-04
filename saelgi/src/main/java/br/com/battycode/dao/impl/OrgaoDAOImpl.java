@@ -1,6 +1,7 @@
 package br.com.battycode.dao.impl;
 
 import br.com.battycode.dao.OrgaoDAO;
+import br.com.battycode.dto.Endereco;
 import br.com.battycode.dto.Esfera;
 import br.com.battycode.dto.Orgao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,11 @@ public class OrgaoDAOImpl implements OrgaoDAO{
                 orgao.setNomeOrgao(resultSet.getString("nomeOrgao"));
                 orgao.setEmail(resultSet.getString("email"));
                 orgao.setCnpj(resultSet.getString("cnpj"));
-                orgao.setCodigoEndereco(resultSet.getInt("codigoEndereco"));
                 orgao.setEsfera(Esfera.getEsfera(resultSet.getInt("esfera")));
+
+                Endereco endereco = new Endereco();
+                endereco.setCodigo(resultSet.getInt("codigoEndereco"));
+                orgao.setEndereco(endereco);
                 return orgao;
             }
         });
@@ -83,8 +87,10 @@ public class OrgaoDAOImpl implements OrgaoDAO{
                 orgao.setNomeOrgao(resultSet.getString("nomeOrgao"));
                 orgao.setEmail(resultSet.getString("email"));
                 orgao.setCnpj(resultSet.getString("cnpj"));
-                orgao.setCodigoEndereco(resultSet.getInt("codigoEndereco"));
                 orgao.setEsfera(Esfera.getEsfera(resultSet.getInt("esfera")));
+                Endereco endereco = new Endereco();
+                endereco.setCodigo(resultSet.getInt("codigoEndereco"));
+                orgao.setEndereco(endereco);
                 return orgao;
             }
         }).stream().findFirst().orElse(null);
@@ -107,8 +113,8 @@ public class OrgaoDAOImpl implements OrgaoDAO{
         sb.append("(nomeOrgao, email, cnpj, codigoEndereco, esfera, flagExcluido) ");
         sb.append(" VALUES ");
         sb.append("(?, ?, ?, ?, ?, 'N')");
-        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getEsfera(), orgao.getCodigoEndereco()};
-        jdbctemplate.update(sb.toString(), params);
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getEndereco().getCodigo(), orgao.getEsfera()};
+        jdbctemplate. update(sb.toString(), params);
     }
 
     @Override
@@ -122,7 +128,7 @@ public class OrgaoDAOImpl implements OrgaoDAO{
         sb.append("codigoEndereco = ?, ");
         sb.append("esfera = ? ");
         sb.append("WHERE codigo = " + orgao.getCodigo());
-        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getCodigoEndereco(), orgao.getEsfera().getCodigo()};
+        Object[] params = {orgao.getNomeOrgao(), orgao.getEmail(), orgao.getCnpj(), orgao.getEndereco().getCodigo(), orgao.getEsfera().getCodigo()};
         jdbctemplate.update(sb.toString(), params);
     }
 }

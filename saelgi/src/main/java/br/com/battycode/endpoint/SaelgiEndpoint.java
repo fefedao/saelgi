@@ -1,9 +1,6 @@
 package br.com.battycode.endpoint;
 
-import br.com.battycode.dto.Esfera;
-import br.com.battycode.dto.Licitacao;
-import br.com.battycode.dto.Modalidade;
-import br.com.battycode.dto.Orgao;
+import br.com.battycode.dto.*;
 import br.com.battycode.service.LicitacaoService;
 import br.com.battycode.service.OrgaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +97,16 @@ public class SaelgiEndpoint {
 		esferas.add(Esfera.Federal);
 		esferas.add(Esfera.Municipal);
 		return new ResponseEntity<>(esferas, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/editarEndereco", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void editarEndereco(@RequestBody Endereco endereco) {
+		orgaoService.editarEndereco(endereco);
+	}
+
+	@RequestMapping(value = "/endereco/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Endereco> getEndereco(@PathVariable("codigo") Integer codigo) {
+		Endereco endereco = orgaoService.obterEndereco(codigo);
+		return new ResponseEntity<>(endereco, HttpStatus.OK);
 	}
 }

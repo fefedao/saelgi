@@ -74,6 +74,7 @@ CREATE TABLE endereco (
   numero VARCHAR(20),
   complemento VARCHAR(100),
   referencia VARCHAR(100),
+  cep VARCHAR(11),
   flagExcluido VARCHAR(1)
 );
 

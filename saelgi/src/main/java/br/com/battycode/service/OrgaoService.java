@@ -1,5 +1,6 @@
 package br.com.battycode.service;
 
+import br.com.battycode.dto.Endereco;
 import br.com.battycode.dto.Orgao;
 
 import java.util.List;
@@ -16,4 +17,8 @@ public interface OrgaoService {
     void removerOrgao(Integer codigo);
 
     void criarEditarOrgao(Orgao orgao);
+
+    void editarEndereco(Endereco endereco);
+
+    Endereco obterEndereco(Integer codigo);
 }

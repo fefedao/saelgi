@@ -13,7 +13,7 @@ public class Orgao {
     private Esfera esfera;
     private String email;
     private String cnpj;
-    private Integer codigoEndereco;
+    private Endereco endereco;
 
     public Integer getCodigo() {
         return codigo;
@@ -55,11 +55,11 @@ public class Orgao {
         this.cnpj = cnpj;
     }
 
-    public Integer getCodigoEndereco() {
-        return codigoEndereco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setCodigoEndereco(Integer codigoEndereco) {
-        this.codigoEndereco = codigoEndereco;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
