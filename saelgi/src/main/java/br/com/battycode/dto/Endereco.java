@@ -2,24 +2,45 @@ package br.com.battycode.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import javax.persistence.*;
+
 /**
  * Created by fefedo on 03/05/16.
  */
 
 @JsonAutoDetect
+@Entity
+@Table(name = "ENDERECO")
 public class Endereco {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
+
+    @Column(nullable = false)
     private String municipio;
+
+    @Column(nullable = false)
     private String uf;
+
+    @Column(nullable = false)
     private String bairro;
+
+    @Column(nullable = false)
     private String numero;
+
+    @Column(nullable = false)
     private String logradouro;
+
     private String complemento;
+
     private String referencia;
+
+    @Column(nullable = false)
     private String cep;
 
-
+    @Column(name = "flagexcluido", nullable = false, length = 1)
+    private String flagExcluido;
 
     public Integer getCodigo() {
         return codigo;
@@ -91,5 +112,13 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getFlagExcluido() {
+        return flagExcluido;
+    }
+
+    public void setFlagExcluido(String flagExcluido) {
+        this.flagExcluido = flagExcluido;
     }
 }

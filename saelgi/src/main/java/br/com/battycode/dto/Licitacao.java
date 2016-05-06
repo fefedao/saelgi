@@ -3,28 +3,59 @@ package br.com.battycode.dto;
 import br.com.battycode.util.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.NaturalId;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @JsonAutoDetect
-public class Licitacao {
+@Entity
+@Table(name="LICITACAO")
+public class Licitacao implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
+
+    @ManyToOne(optional = false)
+    @NaturalId
     private Orgao orgao;
+
+    @ManyToOne(optional = false)
+    @NaturalId
     private Modalidade modalidade;
+
+    @Column(name = "numeroedital", nullable = false)
     private String numeroEdital;
+
+    @Column(name = "datadeabertura", nullable = false)
     private Date dataDeAbertura;
+
+    @Column(name = "dataentregaproposta", nullable = false)
     private Date dataEntregaProposta;
+
+    @Column(name = "dataentregadocumentacao", nullable = false)
     private Date dataEntregaDocumentacao;
 
-    private String dataDeAberturaLong;
-    private String dataEntregaPropostaLong;
-    private String dataEntregaDocumentacaoLong;
+    @Column(name = "flagexcluido", nullable = false, length = 1)
+    private String flagExcluido;
 
+    @Transient
+    private String dataDeAberturaLong;
+    @Transient
+    private String dataEntregaPropostaLong;
+    @Transient
+    private String dataEntregaDocumentacaoLong;
+    @Transient
     private String dataDeAberturaText;
+    @Transient
     private String dataEntregaPropostaText;
+    @Transient
     private String dataEntregaDocumentacaoText;
 
 
@@ -86,6 +117,14 @@ public class Licitacao {
 
     public void setDataEntregaDocumentacao(Date dataEntregaDocumentacao) {
         this.dataEntregaDocumentacao = dataEntregaDocumentacao;
+    }
+
+    public String getFlagExcluido() {
+        return flagExcluido;
+    }
+
+    public void setFlagExcluido(String flagExcluido) {
+        this.flagExcluido = flagExcluido;
     }
 
     //date angular

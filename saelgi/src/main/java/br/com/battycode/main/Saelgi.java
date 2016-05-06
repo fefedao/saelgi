@@ -3,9 +3,11 @@ package br.com.battycode.main;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +15,7 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -29,6 +32,9 @@ import java.io.IOException;
  */
 @SpringBootApplication
 @ComponentScan("br.com.battycode")
+@EnableJpaRepositories("br.com.battycode.jpa")
+@EntityScan("br.com.battycode")
+@EnableTransactionManagement
 public class Saelgi {
 
     public static void main(String[] args) {
@@ -75,6 +81,5 @@ public class Saelgi {
         public void configure(WebSecurity web) throws Exception {
             web.ignoring().antMatchers("/img/**");
         }
-
     }
 }

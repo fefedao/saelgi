@@ -14,3 +14,8 @@ logging:
 spring:
   datasource:
     platform: hsqldb
+
+spring.jpa.database: HSQL
+spring.jpa.show-sql: true
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy

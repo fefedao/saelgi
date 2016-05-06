@@ -1,19 +1,43 @@
 package br.com.battycode.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by fefedo on 14/04/16.
  */
 @JsonAutoDetect
-public class Orgao {
+@Entity
+@Table(name="ORGAO")
+public class Orgao implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
+
+    @Column(name = "nomeorgao", nullable = false)
     private String nomeOrgao;
-    private Esfera esfera;
+
+    @Column(name = "esfera", nullable = false)
+    private Integer esfera;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "cnpj", nullable = false)
     private String cnpj;
+
+    @ManyToOne(optional = false)
+    @NaturalId
     private Endereco endereco;
+
+    @Column(name = "flagexcluido", nullable = false,  length = 1)
+    private String flagExcluido;
 
     public Integer getCodigo() {
         return codigo;
@@ -32,11 +56,11 @@ public class Orgao {
     }
 
     public Esfera getEsfera() {
-        return esfera;
+        return Esfera.getEsfera(esfera);
     }
 
     public void setEsfera(Esfera esfera) {
-        this.esfera = esfera;
+        this.esfera = esfera.getCodigo();
     }
 
     public String getEmail() {
@@ -61,5 +85,13 @@ public class Orgao {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public String getFlagExcluido() {
+        return flagExcluido;
+    }
+
+    public void setFlagExcluido(String flagExcluido) {
+        this.flagExcluido = flagExcluido;
     }
 }

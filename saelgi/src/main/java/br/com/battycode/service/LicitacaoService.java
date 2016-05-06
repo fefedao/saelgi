@@ -22,4 +22,6 @@ public interface LicitacaoService {
     List<Modalidade> obterTodasModalidades();
 
     List<Orgao> obterOrgaos();
+
+    List<Licitacao> obterTodasLicitacoesRepository();
 }

@@ -36,7 +36,8 @@ public class SaelgiEndpoint {
 
 	@RequestMapping(value = "/licitacoes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Licitacao>> getLicitacoes() {
-		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
+		//List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
+		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoesRepository();
 		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
 	}
 

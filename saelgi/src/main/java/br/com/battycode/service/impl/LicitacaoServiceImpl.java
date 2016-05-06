@@ -5,7 +5,9 @@ import br.com.battycode.dao.OrgaoDAO;
 import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Modalidade;
 import br.com.battycode.dto.Orgao;
+import br.com.battycode.jpa.repository.LicitacaoRepository;
 import br.com.battycode.service.LicitacaoService;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,14 @@ import java.util.List;
  */
 @Service
 public class LicitacaoServiceImpl implements LicitacaoService{
+
+
+    private LicitacaoRepository licitacaoRepository;
+
+    @Autowired
+    public void setLicitacaoRepository(LicitacaoRepository licitacaoRepository) {
+        this.licitacaoRepository = licitacaoRepository;
+    }
 
     @Autowired
     private LicitacaoDAO licitacaoDAO;
@@ -55,6 +65,11 @@ public class LicitacaoServiceImpl implements LicitacaoService{
     @Override
     public List<Orgao> obterOrgaos() {
         return orgaoDAO.findAllOrgaosLicitacao();
+    }
+
+    @Override
+    public List<Licitacao> obterTodasLicitacoesRepository(){
+        return Lists.newArrayList(licitacaoRepository.findAll());
     }
 
 }
