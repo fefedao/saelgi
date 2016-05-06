@@ -3,8 +3,12 @@ package br.com.battycode.service.impl;
 import br.com.battycode.dao.EnderecoDAO;
 import br.com.battycode.dao.OrgaoDAO;
 import br.com.battycode.dto.Endereco;
+import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Orgao;
+import br.com.battycode.jpa.repository.LicitacaoRepository;
+import br.com.battycode.jpa.repository.OrgaoRepository;
 import br.com.battycode.service.OrgaoService;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,13 @@ public class OrgaoServiceImpl implements OrgaoService {
 
     @Autowired
     private EnderecoDAO enderecoDAO;
+
+    private OrgaoRepository orgaoRepository;
+
+    @Autowired
+    public void setOrgaoRepository(OrgaoRepository orgaoRepository) {
+        this.orgaoRepository = orgaoRepository;
+    }
 
     public List<Orgao> obterOrgaos(){
         return orgaoDAO.findAllOrgao();
@@ -55,4 +66,8 @@ public class OrgaoServiceImpl implements OrgaoService {
         return enderecoDAO.find(codigo);
     }
 
+    @Override
+    public List<Orgao> obterTodosOrgaoRepository(){
+        return Lists.newArrayList(orgaoRepository.findAll());
+    }
 }

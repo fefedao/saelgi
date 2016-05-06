@@ -71,7 +71,8 @@ public class SaelgiEndpoint {
 
 	@RequestMapping(value = "/orgaos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Orgao>> getOrgaos() {
-		List<Orgao> orgaos = orgaoService.obterOrgaos();
+		//List<Orgao> orgaos = orgaoService.obterOrgaos();
+		List<Orgao> orgaos = orgaoService.obterTodosOrgaoRepository();
 		return new ResponseEntity<>(orgaos, HttpStatus.OK);
 	}
 
