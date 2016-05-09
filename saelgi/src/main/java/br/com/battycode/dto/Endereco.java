@@ -121,4 +121,13 @@ public class Endereco {
     public void setFlagExcluido(String flagExcluido) {
         this.flagExcluido = flagExcluido;
     }
+
+    @Override
+    public String toString() {
+        return logradouro + " " + numero + " - " + municipio + "/" + uf;
+    }
+
+    public String getDemonstra(){
+        return toString();
+    }
 }

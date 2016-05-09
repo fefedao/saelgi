@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,37 +20,17 @@ import java.util.List;
 @Service
 public class LicitacaoServiceImpl implements LicitacaoService{
 
-
-    private LicitacaoRepository licitacaoRepository;
-
     @Autowired
-    public void setLicitacaoRepository(LicitacaoRepository licitacaoRepository) {
-        this.licitacaoRepository = licitacaoRepository;
-    }
+    private LicitacaoRepository licitacaoRepository;
 
     @Autowired
     private LicitacaoDAO licitacaoDAO;
 
-    @Autowired
-    private OrgaoDAO orgaoDAO;
-
-    @Override
-    public List<Licitacao> obterTodasLicitacoes() {
-        return licitacaoDAO.findAllLicitacao();
-    }
-
-    @Override
-    public Licitacao obterLicitacao(Integer codigo) {
-        return licitacaoDAO.find(codigo);
-    }
 
     @Override
     public void criarEditarLicitacao(Licitacao licitacao) {
-        if (licitacao.getCodigo() == null){
-            licitacaoDAO.criarLicitacao(licitacao);
-            return;
-        }
-        licitacaoDAO.editarLicitacao(licitacao);
+        licitacao.setFlagExcluido("N");
+        licitacaoRepository.save(licitacao);
     }
 
     @Override
@@ -59,17 +40,25 @@ public class LicitacaoServiceImpl implements LicitacaoService{
 
     @Override
     public void removerLicitacao(Integer codigo) {
-        licitacaoDAO.excluirLicitacao(codigo);
+        Licitacao licitacao = licitacaoRepository.findOne(codigo);
+        licitacao.setFlagExcluido("S");
+        licitacaoRepository.save(licitacao);
     }
 
     @Override
-    public List<Orgao> obterOrgaos() {
-        return orgaoDAO.findAllOrgaosLicitacao();
+    public List<Licitacao> obterTodasLicitacoes(){
+        ArrayList<Licitacao> licitacaoList = Lists.newArrayList(licitacaoRepository.findAll());
+        for (int i = 0 ; i<licitacaoList.size() ; i++){
+            if (licitacaoList.get(i).getFlagExcluido().equals("S")){
+                licitacaoList.remove(i);
+            }
+        }
+        return licitacaoList;
     }
 
     @Override
-    public List<Licitacao> obterTodasLicitacoesRepository(){
-        return Lists.newArrayList(licitacaoRepository.findAll());
+    public Licitacao obterLicitacao(Integer codigo){
+        return licitacaoRepository.findOne(codigo);
     }
 
 }

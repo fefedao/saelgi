@@ -16,22 +16,22 @@
 		    		<img ng-src="img/saelgi.png" alt="SAELGI" />
 		    	</div>
 		    	<div ng-controller="navigation as nav" class=".col-xs-push-12 ">
-				    <ul class="nav" style>
+				    <ul class="nav">
 				    	<li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li>
 						<li ng-show="authenticated" ng-class="{active:nav.tab('orgao')}"><a href="#/orgaos">Orgãos</a></li>
 				    </ul>
 				</div>
 			</td>
 		    <td valign="top">
-				<div ng-controller="navigation as nav" class="container">
-					<ul class="nav nav-pills" role="tablist">
+				<div ng-controller="navigation as nav" class="container" style="margin-left: 0px;">
+					<ul class="nav nav-pills" role="tablist" >
 						<li ng-class="{active:nav.tab('home')}"><a href="#/">Inicio</a></li>
 						<li ng-show="!authenticated" ng-class="{active:nav.tab('navigation')}"><a href="#/login">Entrar</a></li>
 						<li><a href="">Configurações</a></li>
 						<li ng-show="authenticated"><a href="" ng-click="nav.logout()">Sair</a></li>
 					</ul>
 				</div>
-				<div ng-view class="container" style="width: 1270px;"></div>
+				<div ng-view class="container" style="width: 1400px;"></div>
 			</td>
 	  	</tr>
   	</table>

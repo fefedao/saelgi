@@ -34,20 +34,21 @@ public class SaelgiEndpoint {
 		return model;
 	}
 
+	//Licitacoes
+
 	@RequestMapping(value = "/licitacoes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Licitacao>> getLicitacoes() {
-		//List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
-		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoesRepository();
+		List<Licitacao> licitacoes = licitacaoService.obterTodasLicitacoes();
 		return new ResponseEntity<>(licitacoes, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/licitacoes/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/licitacao/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Licitacao> getLicitacao(@PathVariable("codigo") Integer codigo) {
 		Licitacao licitacao = licitacaoService.obterLicitacao(codigo);
 		return new ResponseEntity<>(licitacao, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/licitacoes/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/licitacao/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteLicitacao(@PathVariable("codigo") Integer codigo) {
 		licitacaoService.removerLicitacao(codigo);
 	}
@@ -63,26 +64,22 @@ public class SaelgiEndpoint {
 		return new ResponseEntity<>(modalidades, HttpStatus.OK);
 	}
 
-    @RequestMapping(value = "/orgaosLicitacao", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Orgao>> getOrgaosLicitacao() {
-        List<Orgao> orgaos = licitacaoService.obterOrgaos();
-        return new ResponseEntity<>(orgaos, HttpStatus.OK);
-    }
+
+	//Orgaos
 
 	@RequestMapping(value = "/orgaos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Orgao>> getOrgaos() {
-		//List<Orgao> orgaos = orgaoService.obterOrgaos();
-		List<Orgao> orgaos = orgaoService.obterTodosOrgaoRepository();
+		List<Orgao> orgaos = orgaoService.obterTodosOrgaos();
 		return new ResponseEntity<>(orgaos, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/orgaos/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/orgao/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Orgao> getOrgao(@PathVariable("codigo") Integer codigo) {
 		Orgao orgao = orgaoService.obterOrgao(codigo);
 		return new ResponseEntity<>(orgao, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/orgaos/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/orgao/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteOrgao(@PathVariable("codigo") Integer codigo) {
 		orgaoService.removerOrgao(codigo);
 	}
@@ -100,6 +97,8 @@ public class SaelgiEndpoint {
 		esferas.add(Esfera.Municipal);
 		return new ResponseEntity<>(esferas, HttpStatus.OK);
 	}
+
+	//Esferas
 
 	@RequestMapping(value = "/editarEndereco", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void editarEndereco(@RequestBody Endereco endereco) {

@@ -107,7 +107,7 @@ function($rootScope, $http, $location, $route) {
                 self.modalidades = response.data;
             }
         );
-        $http.get('/saelgi/orgaosLicitacao').then(
+        $http.get('/saelgi/orgaos').then(
             function(response) {
                 console.log("orgaos listados")
                 self.orgaos = response.data;
@@ -118,7 +118,7 @@ function($rootScope, $http, $location, $route) {
 
 
     self.btnEditar = function(codigo) {
-        $http.get('/saelgi/licitacoes/' + codigo).then(
+        $http.get('/saelgi/licitacao/' + codigo).then(
             function(response) {
                 self.showEditar = true;
                 self.licitacao = response.data;
@@ -131,7 +131,7 @@ function($rootScope, $http, $location, $route) {
                         self.modalidades = response.data;
                     }
                 )
-                $http.get('/saelgi/orgaosLicitacao').then(
+                $http.get('/saelgi/orgaos').then(
                     function(response) {
                         console.log("orgaos listados")
                         self.orgaos = response.data;
@@ -143,7 +143,7 @@ function($rootScope, $http, $location, $route) {
     }
 
     self.btnExcluir = function(codigo) {
-        $http.delete('/saelgi/licitacoes/' + codigo).finally(
+        $http.delete('/saelgi/licitacao/' + codigo).finally(
             function() {
             $http.get('/saelgi/licitacoes').then(
                 function(response) {
@@ -184,6 +184,7 @@ function($rootScope, $http, $location, $route) {
 	var self = this;
 	self.showEditar = false;
     self.showAdicionar = false;
+    self.showEditarEndereco = false;
 
 	$http.get('/saelgi/orgaos').then(
         function(response) {
@@ -195,11 +196,17 @@ function($rootScope, $http, $location, $route) {
 	self.btnAdicionar = function() {
         self.showAdicionar = true;
         self.orgao = null;
+        $http.get('/saelgi/esferas').then(
+            function(response) {
+                console.log("esferas listadas")
+                self.esferas = response.data;
+            }
+        )
         console.log("botao adicionar orgao")
     }
 
     self.btnEditar = function(codigo) {
-        $http.get('/saelgi/orgaos/' + codigo).then(
+        $http.get('/saelgi/orgao/' + codigo).then(
             function(response) {
                 self.showEditar = true;
                 self.orgao = response.data;
@@ -215,7 +222,7 @@ function($rootScope, $http, $location, $route) {
     }
 
     self.btnExcluir = function(codigo) {
-        $http.delete('/saelgi/orgaos/' + codigo).finally(
+        $http.delete('/saelgi/orgao/' + codigo).finally(
             function() {
             $http.get('/saelgi/orgaos').then(
                 function(response) {
@@ -252,4 +259,39 @@ function($rootScope, $http, $location, $route) {
         )
     }
 
+    self.btnEditarEndereco = function(orgao) {
+        $http.get('/saelgi/endereco/' + orgao.endereco.codigo).then(
+            function(response) {
+                self.showEditarEndereco = true;
+                console.log("Editando endereco do orgao")
+                self.endereco = response.data;
+            }
+        );
+    }
+
+    self.formEndereco = function() {
+        $http.post('/saelgi/editarEndereco', self.endereco).then(
+            function() {
+                self.showEditarEndereco = false;
+                console.log("endereco editado")
+                $http.get('/saelgi/orgao/' + self.orgao.codigo).then(
+                    function(response) {
+                        self.showEditar = true;
+                        self.orgao = response.data;
+                        $http.get('/saelgi/esferas').then(
+                            function(response) {
+                                console.log("esferas listadas")
+                                self.esferas = response.data;
+                            }
+                        )
+                        console.log("editar orgao")
+                    }
+                );
+            }
+        );
+    }
+
+    self.btnCancelarEdicaoEndereco = function() {
+        self.showEditarEndereco = false;
+    }
 });

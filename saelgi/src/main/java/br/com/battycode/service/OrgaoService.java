@@ -11,7 +11,6 @@ import java.util.List;
  */
 public interface OrgaoService {
 
-    List<Orgao> obterOrgaos();
 
     Orgao obterOrgao(Integer codigo);
 
@@ -23,5 +22,6 @@ public interface OrgaoService {
 
     Endereco obterEndereco(Integer codigo);
 
-    List<Orgao> obterTodosOrgaoRepository();
+    List<Orgao> obterTodosOrgaos();
+
 }

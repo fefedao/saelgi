@@ -11,17 +11,13 @@ import java.util.List;
  */
 public interface LicitacaoService {
 
-    List<Licitacao> obterTodasLicitacoes();
-
-    Licitacao obterLicitacao(Integer codigo);
-
     void removerLicitacao(Integer codigo);
 
     void criarEditarLicitacao(Licitacao licitacao);
 
     List<Modalidade> obterTodasModalidades();
 
-    List<Orgao> obterOrgaos();
+    List<Licitacao> obterTodasLicitacoes();
 
-    List<Licitacao> obterTodasLicitacoesRepository();
+    Licitacao obterLicitacao(Integer codigo);
 }

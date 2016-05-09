@@ -32,8 +32,7 @@ public class Orgao implements Serializable {
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
 
-    @ManyToOne(optional = false)
-    @NaturalId
+    @OneToOne(optional = false, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private Endereco endereco;
 
     @Column(name = "flagexcluido", nullable = false,  length = 1)

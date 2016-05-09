@@ -23,11 +23,9 @@ public class Licitacao implements Serializable {
     private Integer codigo;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private Orgao orgao;
 
     @ManyToOne(optional = false)
-    @NaturalId
     private Modalidade modalidade;
 
     @Column(name = "numeroedital", nullable = false)
