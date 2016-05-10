@@ -24,4 +24,6 @@ public interface OrgaoService {
 
     List<Orgao> obterTodosOrgaos();
 
+    String[] obterListaUF();
+
 }

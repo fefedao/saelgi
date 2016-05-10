@@ -52,10 +52,12 @@
         <div ng-show="!controller.showAdicionar">
             <div class="form-group">
                 <label for="endereco">Endereço:</label>
-                <span>
-                    <input type="text" class="form-control" id="endereco" name="endereco" ng-model="controller.orgao.endereco.demonstra" style="width: 30%;" disabled="true"/>
-                    <button type="button" ng-click="controller.btnEditarEndereco(controller.orgao)" class="btn btn-warning custom-width">Editar</button>
-                </span>
+                <table style="width: 400px;">
+                    <tr>
+                        <td style="padding-right: 10px;"><input type="text" class="form-control" id="endereco" name="endereco" ng-model="controller.orgao.endereco.demonstra" style="width: 100%;" disabled="true"/></td>
+                        <td><button type="button" ng-click="controller.btnEditarEndereco(controller.orgao)" class="btn btn-warning custom-width">Editar</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -65,7 +67,7 @@
         </div>
         <div class="form-group">
             <label for="esfera">Esfera:</label>
-            <select name="esfera" class="form-control" id="esfera" ng-options="esfera for esfera in controller.esferas track by esfera" ng-model="controller.orgao.esfera" style="width: 50%;" />
+            <select name="esfera" class="form-control" id="esfera" ng-options="esfera for esfera in controller.esferas track by esfera" ng-model="controller.orgao.esfera" style="width: 30%;" />
         </div>
 
         <div ng-show="controller.showAdicionar">
@@ -90,16 +92,17 @@
                 <input type="text" class="form-control" id="addreferencia" name="addreferencia" ng-model="controller.orgao.endereco.referencia" style="width: 30%;"/>
             </div>
             <div class="form-group">
+                <label for="addmunicipioUF">Municipio:</label>
+                <table style="width: 400px;">
+                    <tr>
+                        <td style="padding-right: 10px;"><input type="text" class="form-control" id="addmunicipioUF" name="addmunicipioUF" ng-model="controller.orgao.endereco.municipio" style="width: 100%;"/></td>
+                        <td><select name="addmunicipioUF" class="form-control"  ng-options="uf for uf in controller.ufList track by uf" ng-model="controller.orgao.endereco.uf" style="width: 75%;"/></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
                 <label for="addcep">Cep:</label>
                 <input type="text" class="form-control" id="addcep" name="addcep" ng-model="controller.orgao.endereco.cep" style="width: 15%;"/>
-            </div>
-            <div class="form-group">
-                <label for="addmunicipio">Municipio:</label>
-                <input type="text" class="form-control" id="addmunicipio" name="addmunicipio" ng-model="controller.orgao.endereco.municipio" style="width: 15%;"/>
-            </div>
-            <div class="form-group">
-                <label for="adduf">UF:</label>
-                <input type="text" class="form-control" id="adduf" name="adduf" ng-model="controller.orgao.endereco.uf" style="width: 15%;"/>
             </div>
         </div>
 
@@ -135,12 +138,13 @@
             <input type="text" class="form-control" id="cep" name="cep" ng-model="controller.endereco.cep" style="width: 15%;"/>
         </div>
         <div class="form-group">
-            <label for="municipio">Municipio:</label>
-            <input type="text" class="form-control" id="municipio" name="municipio" ng-model="controller.endereco.municipio" style="width: 15%;"/>
-        </div>
-        <div class="form-group">
-            <label for="uf">UF:</label>
-            <input type="text" class="form-control" id="uf" name="uf" ng-model="controller.endereco.uf" style="width: 15%;"/>
+            <label for="municipioUF">Municipio:</label>
+            <table style="width: 400px;">
+                <tr>
+                    <td style="padding-right: 10px;"><input type="text" class="form-control" id="municipioUF" name="municipioUF" ng-model="controller.endereco.municipio" style="width: 100%;"/></td>
+                    <td><select name="municipioUF" class="form-control"  ng-options="uf for uf in controller.ufList track by uf" ng-model="controller.endereco.uf" style="width: 75%;"/></td>
+                </tr>
+            </table>
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

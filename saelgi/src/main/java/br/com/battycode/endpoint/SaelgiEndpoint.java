@@ -98,7 +98,7 @@ public class SaelgiEndpoint {
 		return new ResponseEntity<>(esferas, HttpStatus.OK);
 	}
 
-	//Esferas
+	//Endereco
 
 	@RequestMapping(value = "/editarEndereco", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void editarEndereco(@RequestBody Endereco endereco) {
@@ -109,5 +109,11 @@ public class SaelgiEndpoint {
 	public ResponseEntity<Endereco> getEndereco(@PathVariable("codigo") Integer codigo) {
 		Endereco endereco = orgaoService.obterEndereco(codigo);
 		return new ResponseEntity<>(endereco, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/obterListaUF", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String[]> getEndereco() {
+		String[] ufList = orgaoService.obterListaUF();
+		return new ResponseEntity<>(ufList, HttpStatus.OK);
 	}
 }

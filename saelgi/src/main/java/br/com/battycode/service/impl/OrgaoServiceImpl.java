@@ -55,6 +55,12 @@ public class OrgaoServiceImpl implements OrgaoService {
     }
 
     @Override
+    public String[] obterListaUF() {
+    String[] ufList = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PR", "PB", "PA", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SE","SP","TO"};
+        return ufList;
+    }
+
+    @Override
     public Orgao obterOrgao(Integer codigo){
         return orgaoRepository.findOne(codigo);
     }
@@ -68,6 +74,8 @@ public class OrgaoServiceImpl implements OrgaoService {
     public Endereco obterEndereco(Integer codigo) {
         return enderecoRepository.findOne(codigo);
     }
+
+
 
 
 }

@@ -202,6 +202,12 @@ function($rootScope, $http, $location, $route) {
                 self.esferas = response.data;
             }
         )
+        $http.get('/saelgi/obterListaUF').then(
+            function(response) {
+                console.log("UFs listadas")
+                self.ufList = response.data;
+            }
+        )
         console.log("botao adicionar orgao")
     }
 
@@ -265,6 +271,12 @@ function($rootScope, $http, $location, $route) {
                 self.showEditarEndereco = true;
                 console.log("Editando endereco do orgao")
                 self.endereco = response.data;
+                $http.get('/saelgi/obterListaUF').then(
+                    function(response) {
+                        console.log("UFs listadas")
+                        self.ufList = response.data;
+                    }
+                )
             }
         );
     }
@@ -282,6 +294,12 @@ function($rootScope, $http, $location, $route) {
                             function(response) {
                                 console.log("esferas listadas")
                                 self.esferas = response.data;
+                            }
+                        )
+                        $http.get('/saelgi/obterListaUF').then(
+                            function(response) {
+                                console.log("UFs listadas")
+                                self.ufList = response.data;
                             }
                         )
                         console.log("editar orgao")
