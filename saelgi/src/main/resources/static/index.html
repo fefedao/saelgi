@@ -9,7 +9,7 @@
 </head>
 
 <body ng-app="saelgi" ng-cloak class="ng-cloak">
-	<table>
+	<table align="center">
 		<tr>
 		    <td valign="top">
 		    	<div class=".navbar-brand">
@@ -17,8 +17,8 @@
 		    	</div>
 		    	<div ng-controller="navigation as nav" class=".col-xs-push-12 ">
 				    <ul class="nav">
-				    	<li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a href="#/licitacoes">Licitações</a></li>
-						<li ng-show="authenticated" ng-class="{active:nav.tab('orgao')}"><a href="#/orgaos">Orgãos</a></li>
+				    	<li ng-show="authenticated" ng-class="{active:nav.tab('licitacao')}"><a align="center" href="#/licitacoes">Licitações</a></li>
+						<li ng-show="authenticated" ng-class="{active:nav.tab('orgao')}"><a align="center" href="#/orgaos">Orgãos</a></li>
 				    </ul>
 				</div>
 			</td>
@@ -31,7 +31,7 @@
 						<li ng-show="authenticated"><a href="" ng-click="nav.logout()">Sair</a></li>
 					</ul>
 				</div>
-				<div ng-view class="container" style="width: 1400px;"></div>
+				<div ng-view class="container" style="width: 1200px; padding-left: 10px; padding-right: 0px;"></div>
 			</td>
 	  	</tr>
   	</table>

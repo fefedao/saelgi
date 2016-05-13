@@ -16,7 +16,7 @@
                     <th style="text-align: center;">Abertura</th>
                     <th style="text-align: center;">Proposta</th>
                     <th style="text-align: center;">Entrega Docs</th>
-                    <th align="center" width="20%"></th>
+                    <th align="center" width="15%" style="padding-left: 0px; padding-right: 0px; width: 15%;"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,7 +44,7 @@
     <form role="form" ng-submit="controller.formLicitacao()" name="formLicitacao">
         <div class="form-group">
             <label for="numLicitacao">Numero Licitação:</label>
-            <input type="text" class="form-control" id="numLicitacao" name="numLicitacao" ng-model="controller.licitacao.numeroEdital" style="width: 20%;"/>
+            <input type="text" class="form-control" id="numLicitacao" name="numLicitacao" ng-model="controller.licitacao.numeroEdital" style="width: 15%;"/>
         </div>
         <div class="form-group">
             <label for="orgao">Orgão:</label>
@@ -52,19 +52,19 @@
         </div>
         <div class="form-group">
             <label for="modalidade">Modalidade:</label>
-            <select name="modalidade" class="form-control" id="modalidade" ng-options="modalidade.nomeModalidade for modalidade in controller.modalidades track by modalidade.codigo" ng-model="controller.licitacao.modalidade" style="width: 25%;" />
+            <select name="modalidade" class="form-control" id="modalidade" ng-options="modalidade.nomeModalidade for modalidade in controller.modalidades track by modalidade.codigo" ng-model="controller.licitacao.modalidade" style="width: 15%;" />
         </div>
         <div class="form-group">
             <label for="dataDeAbertura">Abertura:</label>
-            <input type="date" class="form-control" id="dataDeAbertura" name="dataDeAbertura" ng-model="controller.licitacao.dataDeAberturaLong" style="width: 14%;"/>
+            <input type="date" class="form-control" id="dataDeAbertura" name="dataDeAbertura" ng-model="controller.licitacao.dataDeAberturaLong" style="width: 15%;"/>
         </div>
         <div class="form-group">
             <label for="dataEntregaProposta">Proposta:</label>
-            <input type="date" class="form-control" id="dataEntregaProposta" name="dataEntregaProposta" ng-model="controller.licitacao.dataEntregaPropostaLong" style="width: 14%;"/>
+            <input type="date" class="form-control" id="dataEntregaProposta" name="dataEntregaProposta" ng-model="controller.licitacao.dataEntregaPropostaLong" style="width: 15%;"/>
         </div>
         <div class="form-group">
             <label for="dataEntregaDocumentacao">Entrega Docs:</label>
-            <input type="date" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacaoLong" style="width: 14%;"/>
+            <input type="date" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacaoLong" style="width: 15%;"/>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>

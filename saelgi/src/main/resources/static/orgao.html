@@ -13,9 +13,9 @@
                     <th style="text-align: center;">CNPJ</th>
                     <th style="text-align: center;">Orgão</th>
                     <th style="text-align: center;">email</th>
-                    <th style="text-align: center;">Esfera</th>
-                    <th style="text-align: center;">Endereço</th>
-                    <th align="center" width="20%"></th>
+                    <th style="text-align: center;">Telefone</th>
+                    <!--<th style="text-align: center;">Municipio</th>-->
+                    <th align="center" width="15%" style="padding-left: 0px; padding-right: 0px; width: 15%;"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,8 +23,8 @@
                     <td><span ng-bind="org.cnpj"></span></td>
                     <td><span ng-bind="org.nomeOrgao"></span></td>
                     <td><span ng-bind="org.email"></span></td>
-                    <td><span ng-bind="org.esfera"></span></td>
-                    <td><span>{{org.endereco.municipio}}/{{org.endereco.uf}}</span></td>
+                    <td><span>{{org.telefones[0].numero}}</span></td>
+                    <!--<td><span>{{org.endereco.municipio}}/{{org.endereco.uf}}</span></td>-->
                     <td>
                         <button type="button" ng-click="controller.btnEditar(org.codigo, org)" class="btn btn-success custom-width">Editar</button>
                         <button type="button" ng-click="controller.btnExcluir(org.codigo)" class="btn btn-danger custom-width">Excluir</button>
@@ -42,7 +42,7 @@
     <form role="form" ng-submit="controller.formOrgao()" name="formOrgao">
         <div class="form-group">
             <label for="cnpj">CNPJ:</label>
-            <input type="text" class="form-control" id="cnpj" name="cnpj" ng-model="controller.orgao.cnpj" style="width: 20%;"/>
+            <input type="text" class="form-control" id="cnpj" name="cnpj" ng-model="controller.orgao.cnpj" style="width: 15%;" ui-mask="99.999.999/9999-99"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
         </div>
         <div class="form-group">
             <label for="orgao">Orgão:</label>
@@ -52,7 +52,7 @@
         <div ng-show="!controller.showAdicionar">
             <div class="form-group">
                 <label for="endereco">Endereço:</label>
-                <table style="width: 400px;">
+                <table style="width: 40%;">
                     <tr>
                         <td style="padding-right: 10px;"><input type="text" class="form-control" id="endereco" name="endereco" ng-model="controller.orgao.endereco.demonstra" style="width: 100%;" disabled="true"/></td>
                         <td><button type="button" ng-click="controller.btnEditarEndereco(controller.orgao)" class="btn btn-warning custom-width">Editar</button></td>
@@ -67,17 +67,18 @@
         </div>
         <div class="form-group">
             <label for="esfera">Esfera:</label>
-            <select name="esfera" class="form-control" id="esfera" ng-options="esfera for esfera in controller.esferas track by esfera" ng-model="controller.orgao.esfera" style="width: 30%;" />
+            <select name="esfera" class="form-control" id="esfera" ng-options="esfera for esfera in controller.esferas track by esfera" ng-model="controller.orgao.esfera" style="width: 15%;" />
         </div>
 
         <div ng-show="controller.showAdicionar">
             <div class="form-group">
-                <label for="addlogradouro">Logradouro:</label>
-                <input type="text" class="form-control" id="addlogradouro" name="addlogradouro" ng-model="controller.orgao.endereco.logradouro" style="width: 30%;"/>
-            </div>
-            <div class="form-group">
-                <label for="addnumero">Número:</label>
-                <input type="text" class="form-control" id="addnumero" name="addnumero" ng-model="controller.orgao.endereco.numero" style="width: 15%;"/>
+                <label for="addlogradouro">Logradouro - Número:</label>
+                <table style="width: 60%;">
+                    <tr>
+                        <td style="padding-right: 10px;"><input type="text" class="form-control" id="addlogradouro" name="addlogradouro" ng-model="controller.orgao.endereco.logradouro" style="width: 100%;"/></td>
+                        <td><input type="text" class="form-control" id="addnumero" name="addnumero" ng-model="controller.orgao.endereco.numero"  style="width: 25%;"/></td>
+                    </tr>
+                </table>
             </div>
             <div class="form-group">
                 <label for="addcomplemento">Complemento:</label>
@@ -93,7 +94,7 @@
             </div>
             <div class="form-group">
                 <label for="addmunicipioUF">Municipio:</label>
-                <table style="width: 400px;">
+                <table style="width: 41%;">
                     <tr>
                         <td style="padding-right: 10px;"><input type="text" class="form-control" id="addmunicipioUF" name="addmunicipioUF" ng-model="controller.orgao.endereco.municipio" style="width: 100%;"/></td>
                         <td><select name="addmunicipioUF" class="form-control"  ng-options="uf for uf in controller.ufList track by uf" ng-model="controller.orgao.endereco.uf" style="width: 75%;"/></td>
@@ -102,7 +103,7 @@
             </div>
             <div class="form-group">
                 <label for="addcep">Cep:</label>
-                <input type="text" class="form-control" id="addcep" name="addcep" ng-model="controller.orgao.endereco.cep" style="width: 15%;"/>
+                <input type="text" class="form-control" id="addcep" name="addcep" ng-model="controller.orgao.endereco.cep" ui-mask="99.999-999"  ui-mask-placeholder ui-mask-placeholder-char="_" style="width: 10%;"/>
             </div>
         </div>
 
@@ -114,12 +115,13 @@
 <div ng-show="authenticated && controller.showEditarEndereco">
     <form role="form" ng-submit="controller.formEndereco()" name="formEndereco">
         <div class="form-group">
-            <label for="logradouro">Logradouro:</label>
-            <input type="text" class="form-control" id="logradouro" name="logradouro" ng-model="controller.endereco.logradouro" style="width: 30%;"/>
-        </div>
-        <div class="form-group">
-            <label for="numero">Número:</label>
-            <input type="text" class="form-control" id="numero" name="numero" ng-model="controller.endereco.numero" style="width: 15%;"/>
+            <label for="logradouro">Logradouro - Número:</label>
+            <table style="width: 60%;">
+                <tr>
+                    <td style="padding-right: 10px;"><input type="text" class="form-control" id="logradouro" name="logradouro" ng-model="controller.endereco.logradouro" style="width: 100%;"/></td>
+                    <td><input type="text" class="form-control" id="numero" name="numero" ng-model="controller.endereco.numero"  style="width: 25%;"/></td>
+                </tr>
+            </table>
         </div>
         <div class="form-group">
             <label for="complemento">Complemento:</label>
@@ -135,11 +137,11 @@
         </div>
         <div class="form-group">
             <label for="cep">Cep:</label>
-            <input type="text" class="form-control" id="cep" name="cep" ng-model="controller.endereco.cep" style="width: 15%;"/>
+            <input type="text" class="form-control" id="cep" name="cep" ng-model="controller.endereco.cep" style="width: 10%;" ui-mask="99.999-999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
         </div>
         <div class="form-group">
             <label for="municipioUF">Municipio:</label>
-            <table style="width: 400px;">
+            <table style="width: 41%;">
                 <tr>
                     <td style="padding-right: 10px;"><input type="text" class="form-control" id="municipioUF" name="municipioUF" ng-model="controller.endereco.municipio" style="width: 100%;"/></td>
                     <td><select name="municipioUF" class="form-control"  ng-options="uf for uf in controller.ufList track by uf" ng-model="controller.endereco.uf" style="width: 75%;"/></td>

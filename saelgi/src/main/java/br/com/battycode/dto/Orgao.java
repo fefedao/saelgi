@@ -1,10 +1,12 @@
 package br.com.battycode.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by fefedo on 14/04/16.
@@ -37,6 +39,10 @@ public class Orgao implements Serializable {
 
     @Column(name = "flagexcluido", nullable = false,  length = 1)
     private String flagExcluido;
+
+    @OneToMany(targetEntity = TelefoneOrgao.class, cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="orgao")
+    private List telefones;
 
     public Integer getCodigo() {
         return codigo;
@@ -92,5 +98,13 @@ public class Orgao implements Serializable {
 
     public void setFlagExcluido(String flagExcluido) {
         this.flagExcluido = flagExcluido;
+    }
+
+    public List getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List telefones) {
+        this.telefones = telefones;
     }
 }

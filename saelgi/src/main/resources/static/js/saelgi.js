@@ -1,4 +1,4 @@
-angular.module('saelgi', [ 'ngRoute', 'ui.mask' ]).config(
+angular.module('saelgi', [ 'ngRoute', 'ui.mask', 'ui.validate' ]).config(
 
 function($routeProvider, $httpProvider) {
 

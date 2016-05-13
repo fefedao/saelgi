@@ -28,6 +28,18 @@ INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataE
 INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N');
 INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N');
 
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (1, 1, '(48) 32411392', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (2, 2, '(48) 32411393', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (3, 3, '(48) 32411394', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (4, 4, '(48) 32411395', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (5, 5, '(48) 32411396', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (6, 6, '(48) 32411397', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (7, 7, '(48) 32411398', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (8, 8, '(48) 32411399', 'Setor de Licitações', 'S', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (9, 1, '(48) 32412310', 'Portaria', 'N', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (10, 1, '(48) 32412311', 'Almoxarifado', 'N', 'N');
+INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (11, 2, '(48) 32412123', 'Portaria', 'N', 'N');
+
 
 
 
