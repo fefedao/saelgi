@@ -1,2 +1,3 @@
 # saelgi
-Sistema de apoio a Empresas Licitantes
+
+Springboot + JPA + AngularJS + HSQLDB
