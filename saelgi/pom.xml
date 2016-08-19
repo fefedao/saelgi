@@ -5,7 +5,7 @@
 
     <groupId>br.com.battycode</groupId>
     <artifactId>saelgi</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>saelgi</name>

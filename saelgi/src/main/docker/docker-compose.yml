@@ -6,45 +6,13 @@ nginx:
   ports:
     - "80:80"
   links:
-    - petws
-    - petwssg
-    - mniws
-    - consultaprocessows
-  restart: always
+    - saelgi
+#  restart: always
 
-
-mniws:
-  image: docker-web.softplan.com.br/unj/mniws:1.3.3-4-ALPINE
+saelgi:
+  image: saelgi:1.0.0
   container_name: mniws
   env_file: mniws.properties
   volumes:
-    - /var/log/mniws/mniws:/log/mniws
-  links:
-    - petws
-    - petwssg
-    - consultaprocessows
-  restart: always
-
-petws:
-  image: docker-web.softplan.com.br/unj/mniws-petws:latest
-  container_name: petws
-  env_file: petws.properties
-  volumes:
-    - /var/log/mniws/petws:/opt/jboss/jboss4/server/default/log
-  restart: always
-
-petwssg:
-  image: docker-web.softplan.com.br/unj/mniws-petwssg:latest
-  container_name: petwssg
-  env_file: petwssg.properties
-  volumes:
-    - /var/log/mniws/petwssg:/opt/jboss/jboss4/server/default/log
-  restart: always
-
-consultaprocessows:
-  image: docker-web.softplan.com.br/unj/consultaprocessows:1.2.1-8-ALPINE
-  container_name: consultaprocessows
-  env_file: consultaprocessows.properties
-  volumes:
-    - /var/log/mniws/consultaprocessows:/log/consultaprocessows
-  restart: always
+    - /var/log/saelgi/saelgi:/log/saelgi
+#  restart: always
