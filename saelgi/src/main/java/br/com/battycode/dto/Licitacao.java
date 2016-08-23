@@ -43,6 +43,10 @@ public class Licitacao implements Serializable {
     @Column(name = "flagexcluido", nullable = false, length = 1)
     private String flagExcluido;
 
+    @Lob
+    @Column(length=100000,name = "bledital", nullable = true)
+    private byte[] blEdital;
+
     @Transient
     private String dataDeAberturaLong;
     @Transient
@@ -177,5 +181,13 @@ public class Licitacao implements Serializable {
 
     public String getDataEntregaDocumentacaoText() {
         return dateFormatText.format(this.dataEntregaDocumentacao);
+    }
+
+    public byte[] getBlEdital() {
+        return blEdital;
+    }
+
+    public void setBlEdital(byte[] blEdital) {
+        this.blEdital = blEdital;
     }
 }
