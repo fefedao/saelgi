@@ -44,7 +44,7 @@ public class Licitacao implements Serializable {
     private String flagExcluido;
 
     @Lob
-    @Column(length=100000,name = "bledital", nullable = true)
+    @Column(columnDefinition = "blob", length=100000,name = "bledital", nullable = true)
     private byte[] blEdital;
 
     @Transient

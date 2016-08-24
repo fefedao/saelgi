@@ -8,9 +8,15 @@ import br.com.battycode.dto.Orgao;
 import br.com.battycode.jpa.repository.LicitacaoRepository;
 import br.com.battycode.service.LicitacaoService;
 import com.google.common.collect.Lists;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOExceptionWithCause;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +34,12 @@ public class LicitacaoServiceImpl implements LicitacaoService{
 
 
     @Override
-    public void criarEditarLicitacao(Licitacao licitacao) {
+    public void criarEditarLicitacao(Licitacao licitacao) throws IOException{
         licitacao.setFlagExcluido("N");
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        File file = new File(classLoader.getResource("file/teste.pdf").getFile());
+        licitacao.setBlEdital(FileUtils.readFileToByteArray(file));
         licitacaoRepository.save(licitacao);
     }
 

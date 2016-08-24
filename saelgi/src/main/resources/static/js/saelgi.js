@@ -180,6 +180,17 @@ function($rootScope, $http, $location, $route) {
         )
     }
 
+    self.btnVisualizarEdital = function(codigo){
+        $http.get('/saelgi/licitacao/edital/' + codigo, {responseType: 'arraybuffer'})
+            .success(function (data) {
+            var file = new Blob([data], {type: 'application/pdf'});
+            var fileURL = URL.createObjectURL(file);
+            $scope.pdfContent = $sce.trustAsResourceUrl(fileURL);
+        })
+            .error(function () {
+        });
+    }
+
 }).controller('orgao', function($http, $rootScope) {
 	var self = this;
 	self.showEditar = false;

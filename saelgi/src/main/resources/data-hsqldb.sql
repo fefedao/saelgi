@@ -22,11 +22,11 @@ INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (2, 'Pregã
 INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (3, 'Tomada de Preços', 'N');
 INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (4, 'Concorrência', 'N');
 
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 'N', null);
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (2, 2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 'N', null);
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (3, 4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 'N', null);
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N', null);
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N', null);
+--INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 'N', NULL );
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (2, 2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 'N', NULL );
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (3, 4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 'N', NULL );
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N', NULL );
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N', NULL );
 
 
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (1, 1, '(48) 32411392', 'Setor de Licitações', 'S', 'N');

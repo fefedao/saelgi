@@ -1,3 +1,4 @@
+textdb.allow_full_path: true
 server:
   contextPath: /saelgi
   port: 8080

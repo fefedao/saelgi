@@ -1,5 +1,9 @@
 package br.com.battycode.main;
 
+import br.com.battycode.dto.Licitacao;
+import br.com.battycode.jpa.repository.LicitacaoRepository;
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -19,6 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -26,6 +31,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import java.io.File;
 
 /**
  * Created by fefedo on 13/04/16.
@@ -36,6 +43,9 @@ import java.io.IOException;
 @EntityScan("br.com.battycode")
 @EnableTransactionManagement
 public class Saelgi {
+
+    @Autowired
+    private LicitacaoRepository licitacaoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Saelgi.class, args);
@@ -81,5 +91,10 @@ public class Saelgi {
         public void configure(WebSecurity web) throws Exception {
             web.ignoring().antMatchers("/img/**");
         }
+    }
+
+    @PostConstruct
+    public void popularBlobsIniciais() throws Exception {
+
     }
 }

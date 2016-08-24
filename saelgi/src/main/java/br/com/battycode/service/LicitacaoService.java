@@ -4,6 +4,8 @@ import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Modalidade;
 import br.com.battycode.dto.Orgao;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ public interface LicitacaoService {
 
     void removerLicitacao(Integer codigo);
 
-    void criarEditarLicitacao(Licitacao licitacao);
+    void criarEditarLicitacao(Licitacao licitacao) throws IOException;
 
     List<Modalidade> obterTodasModalidades();
 

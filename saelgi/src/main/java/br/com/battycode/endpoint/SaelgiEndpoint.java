@@ -4,11 +4,13 @@ import br.com.battycode.dto.*;
 import br.com.battycode.service.LicitacaoService;
 import br.com.battycode.service.OrgaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.*;
 
@@ -53,8 +55,20 @@ public class SaelgiEndpoint {
 		licitacaoService.removerLicitacao(codigo);
 	}
 
+	@RequestMapping(value = "/licitacao/edital/{codigo}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> obterEditalLicitacao(@PathVariable("codigo") Integer codigo) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String filename = "output.pdf";
+		headers.setContentDispositionFormData(filename, filename);
+		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        byte[] contents = licitacaoService.obterLicitacao(codigo).getBlEdital();
+		ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
+		return response;
+	}
+
 	@RequestMapping(value = "/criarEditarLicitacao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void criarEditarLicitacao(@RequestBody Licitacao licitacao) {
+	public void criarEditarLicitacao(@RequestBody Licitacao licitacao) throws IOException{
 		licitacaoService.criarEditarLicitacao(licitacao);
 	}
 

@@ -29,6 +29,7 @@
                     <td><span ng-bind="lic.dataEntregaDocumentacaoText"></span></td>
                     <td>
                         <button type="button" ng-click="controller.btnEditar(lic.codigo, lic)" class="btn btn-success ">Editar</button>
+                        <!--<button type="button" ng-click="controller.btnVisualizarEdital(lic.codigo)" class="btn btn-success ">Ver edital</button>-->
                         <button type="button" ng-click="controller.btnExcluir(lic.codigo)" class="btn btn-danger ">Excluir</button>
                     </td>
                 </tr>
@@ -69,4 +70,14 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
         <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>
     </form>
+</div>
+
+<div ng-show="authenticated && (controller.showVisualizarPDF)">
+    <div ng-controller="PDFController" class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" onloadstart="">
+                <object data="{{pdfContent}}"  type="application/pdf" style="width:100%; height:1000px" />
+            </div>
+        </div>
+    </div>
 </div>
