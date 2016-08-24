@@ -202,8 +202,8 @@
                     <!-- https://mvnrepository.com/artifact/org.webjars/pdf-js -->
                     <dependency>
                         <groupId>org.webjars</groupId>
-                        <artifactId>pdf-js</artifactId>
-                        <version>0.5.5</version>
+                        <artifactId>angularjs-pdf</artifactId>
+                        <version>1.3.0</version>
                     </dependency>
                 </dependencies>
             </plugin>

@@ -55,7 +55,7 @@ public class SaelgiEndpoint {
 		licitacaoService.removerLicitacao(codigo);
 	}
 
-	@RequestMapping(value = "/licitacao/edital/{codigo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/licitacao/edital/{codigo}", method = RequestMethod.GET, produces = "application/pdf")
 	public ResponseEntity<byte[]> obterEditalLicitacao(@PathVariable("codigo") Integer codigo) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));

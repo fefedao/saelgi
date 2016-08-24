@@ -90,11 +90,13 @@ function($rootScope, $http, $location, $route) {
 	var self = this;
 	self.showEditar = false;
     self.showAdicionar = false;
+    self.showVisualizarPDF = false;
 
 	$http.get('/saelgi/licitacoes').then(
         function(response) {
             console.log("licitacoes listadas")
             self.licitacoes = response.data;
+            self.showVisualizarPDF = false;
         }
 	)
 
@@ -175,20 +177,23 @@ function($rootScope, $http, $location, $route) {
                 console.log("edicao/criacao licitacao cancelada")
                 self.showEditar = false;
                 self.showAdicionar = false;
+                self.showVisualizarPDF = false;
                 self.licitacoes = response.data;
             }
         )
     }
 
     self.btnVisualizarEdital = function(codigo){
+
         $http.get('/saelgi/licitacao/edital/' + codigo, {responseType: 'arraybuffer'})
             .success(function (data) {
-            var file = new Blob([data], {type: 'application/pdf'});
-            var fileURL = URL.createObjectURL(file);
-            $scope.pdfContent = $sce.trustAsResourceUrl(fileURL);
-        })
-            .error(function () {
-        });
+                var file = new Blob([data], {type: 'application/pdf'});
+                var fileURL = URL.createObjectURL(file);
+                self.showVisualizarPDF = true;
+                //self.pdfContent = $sce.trustAsResourceUrl(fileURL);
+                window.open(fileURL);
+            }
+        )
     }
 
 }).controller('orgao', function($http, $rootScope) {
