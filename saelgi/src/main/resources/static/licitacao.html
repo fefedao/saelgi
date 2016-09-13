@@ -5,7 +5,7 @@
 <div ng-show="authenticated && !controller.showEditar && !controller.showAdicionar">
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading" style="background-color: #3fc348;"><span class="lead">Lista de Licitações</span></div>
+        <div class="panel-heading" style="background-color: #5cacee;"><span class="lead">Licitações</span></div>
         <div class="tablecontainer">
             <table class="table table-hover">
                 <thead>
@@ -16,7 +16,8 @@
                     <th style="text-align: center;">Abertura</th>
                     <th style="text-align: center;">Proposta</th>
                     <th style="text-align: center;">Entrega Docs</th>
-                    <th align="center" width="15%" style="padding-left: 0px; padding-right: 0px; width: 15%;"></th>
+                    <th align="center" style="padding-left: 0px; padding-right: 0px; width: 10%;"></th>
+                    <th align="center" style="padding-left: 0px; padding-right: 0px; width: 15%;"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,8 +29,10 @@
                     <td><span ng-bind="lic.dataEntregaPropostaText"></span></td>
                     <td><span ng-bind="lic.dataEntregaDocumentacaoText"></span></td>
                     <td>
+                        <button type="button" ng-click="controller.btnVisualizarEdital(lic.codigo)" class="btn btn-default ">Ver edital</button>
+                    </td>
+                    <td>
                         <button type="button" ng-click="controller.btnEditar(lic.codigo, lic)" class="btn btn-success ">Editar</button>
-                        <button type="button" ng-click="controller.btnVisualizarEdital(lic.codigo)" class="btn btn-success ">Ver edital</button>
                         <button type="button" ng-click="controller.btnExcluir(lic.codigo)" class="btn btn-danger ">Excluir</button>
                     </td>
                 </tr>
@@ -67,17 +70,19 @@
             <label for="dataEntregaDocumentacao">Entrega Docs:</label>
             <input type="date" class="form-control" id="dataEntregaDocumentacao" name="dataEntregaDocumentacao" ng-model="controller.licitacao.dataEntregaDocumentacaoLong" style="width: 15%;"/>
         </div>
+
+        <div ng-show="controller.showEditar">
+            <div class="form-group">
+                <label for="file">Edital (PDF): {{controller.licitacao.nmArquivoEdital}}</label>
+                <input id="file" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
+            </div>
+
+            <div class="form-group">
+                <button type="button" ng-click="controller.btnVisualizarEdital(controller.licitacao.codigo)" class="btn btn-default ">Ver edital {{controller.licitacao.nmArquivoEdital}}</button>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Salvar</button>
         <button type="button" ng-click="controller.btnCancelar()" class="btn btn-danger custom-width">Cancelar</button>
     </form>
-</div>
-
-<div ng-show="authenticated && (controller.showVisualizarPDF)">
-    <div ng-controller="PDFController" class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" onloadstart="">
-                <object data="controller.pdfContent"  type="application/pdf" style="width:100%; height:1000px" />
-            </div>
-        </div>
-    </div>
 </div>

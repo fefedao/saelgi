@@ -3,12 +3,15 @@ package br.com.battycode.endpoint;
 import br.com.battycode.dto.*;
 import br.com.battycode.service.LicitacaoService;
 import br.com.battycode.service.OrgaoService;
+import br.com.battycode.service.RepresentanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -22,6 +25,9 @@ public class SaelgiEndpoint {
 
 	@Autowired
 	private OrgaoService orgaoService;
+
+    @Autowired
+    private RepresentanteService representanteService;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public Principal user(Principal user) {
@@ -47,6 +53,7 @@ public class SaelgiEndpoint {
 	@RequestMapping(value = "/licitacao/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Licitacao> getLicitacao(@PathVariable("codigo") Integer codigo) {
 		Licitacao licitacao = licitacaoService.obterLicitacao(codigo);
+        licitacao.setNmArquivoEdital(licitacaoService.obterNmArquivoEdital(codigo));
 		return new ResponseEntity<>(licitacao, HttpStatus.OK);
 	}
 
@@ -55,21 +62,41 @@ public class SaelgiEndpoint {
 		licitacaoService.removerLicitacao(codigo);
 	}
 
-	@RequestMapping(value = "/licitacao/edital/{codigo}", method = RequestMethod.GET, produces = "application/pdf")
-	public ResponseEntity<byte[]> obterEditalLicitacao(@PathVariable("codigo") Integer codigo) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.parseMediaType("application/pdf"));
-		String filename = "output.pdf";
-		headers.setContentDispositionFormData(filename, filename);
-		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-        byte[] contents = licitacaoService.obterLicitacao(codigo).getBlEdital();
-		ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
-		return response;
-	}
-
 	@RequestMapping(value = "/criarEditarLicitacao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void criarEditarLicitacao(@RequestBody Licitacao licitacao) throws IOException{
 		licitacaoService.criarEditarLicitacao(licitacao);
+	}
+
+    @RequestMapping(value = "/licitacao/edital/{codigo}", method = RequestMethod.GET, produces = "application/pdf")
+    public ResponseEntity<byte[]> obterEditalLicitacao(@PathVariable("codigo") Integer codigo) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        Edital edital = licitacaoService.obterEdital(codigo);
+        byte[] contents = edital.getBlEdital();
+        String filename = edital.getNmArquivoEdital();
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
+        return response;
+    }
+
+	@RequestMapping(value = "/licitacao/edital/upload/{codigo}", method = RequestMethod.POST)
+	public void uploadArquivoLicitacao(MultipartHttpServletRequest request, @PathVariable("codigo") Integer codigo){
+		try {
+            Iterator<String> itr = request.getFileNames();
+            MultipartFile file = request.getFile(itr.next());
+
+            Edital edital = new Edital();
+            edital.setCodigoLicitacao(codigo);
+            edital.setNmArquivoEdital(file.getOriginalFilename());
+            edital.setBlEdital(file.getBytes());
+
+            licitacaoService.criarEditarEdital(edital);
+		} catch (RuntimeException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@RequestMapping(value = "/modalidades", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -126,8 +153,32 @@ public class SaelgiEndpoint {
 	}
 
 	@RequestMapping(value = "/obterListaUF", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String[]> getEndereco() {
+	public ResponseEntity<String[]> getListaUF() {
 		String[] ufList = orgaoService.obterListaUF();
 		return new ResponseEntity<>(ufList, HttpStatus.OK);
 	}
+
+	//Representante
+
+    @RequestMapping(value = "/representantes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Representante>> getRepresentantes() {
+        List<Representante> representantes = representanteService.obterTodosRepresentante();
+        return new ResponseEntity<>(representantes, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/representante/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Representante> getRepresentante(@PathVariable("codigo") Integer codigo) {
+        Representante representante = representanteService.obterRepresentante(codigo);
+        return new ResponseEntity<>(representante, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/representante/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteRepresentante(@PathVariable("codigo") Integer codigo) {
+        representanteService.removerRepresentante(codigo);
+    }
+
+    @RequestMapping(value = "/criarEditarRepresentante", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void criarEditarRepresentante(@RequestBody Representante representante) {
+        representanteService.criarEditarRepresentante(representante);
+    }
 }

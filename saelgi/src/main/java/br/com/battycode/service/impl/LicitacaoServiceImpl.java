@@ -1,22 +1,17 @@
 package br.com.battycode.service.impl;
 
 import br.com.battycode.dao.LicitacaoDAO;
-import br.com.battycode.dao.OrgaoDAO;
+import br.com.battycode.dto.Edital;
 import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Modalidade;
-import br.com.battycode.dto.Orgao;
+import br.com.battycode.jpa.repository.EditalRepository;
 import br.com.battycode.jpa.repository.LicitacaoRepository;
 import br.com.battycode.service.LicitacaoService;
 import com.google.common.collect.Lists;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOExceptionWithCause;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,16 +25,15 @@ public class LicitacaoServiceImpl implements LicitacaoService{
     private LicitacaoRepository licitacaoRepository;
 
     @Autowired
+    private EditalRepository editalRepository;
+
+    @Autowired
     private LicitacaoDAO licitacaoDAO;
 
 
     @Override
     public void criarEditarLicitacao(Licitacao licitacao) throws IOException{
         licitacao.setFlagExcluido("N");
-        ClassLoader classLoader = getClass().getClassLoader();
-
-        File file = new File(classLoader.getResource("file/teste.pdf").getFile());
-        licitacao.setBlEdital(FileUtils.readFileToByteArray(file));
         licitacaoRepository.save(licitacao);
     }
 
@@ -71,4 +65,26 @@ public class LicitacaoServiceImpl implements LicitacaoService{
         return licitacaoRepository.findOne(codigo);
     }
 
+
+    @Override
+    public void criarEditarEdital(Edital edital) throws IOException{
+        Edital editalToSave = editalRepository.findEditalPorLicitacao(edital.getCodigoLicitacao());
+        if (editalToSave != null) {
+            editalToSave.setBlEdital(edital.getBlEdital());
+            editalToSave.setNmArquivoEdital(edital.getNmArquivoEdital());
+            editalRepository.save(editalToSave);
+            return;
+        }
+        editalRepository.save(edital);
+    }
+
+    @Override
+    public Edital obterEdital(Integer codigoLicitacao){
+        return editalRepository.findEditalPorLicitacao(codigoLicitacao);
+    }
+
+    @Override
+    public String obterNmArquivoEdital(Integer codigoLicitacao){
+        return editalRepository.findNmArquivoEdital(codigoLicitacao);
+    }
 }

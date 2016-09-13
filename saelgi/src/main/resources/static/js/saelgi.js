@@ -18,7 +18,11 @@ function($routeProvider, $httpProvider) {
     		templateUrl : 'orgao.html',
     		controller : 'orgao',
     		controllerAs: 'controller'
-	}).otherwise('/');
+    }).when('/representantes', {
+        templateUrl : 'representante.html',
+        controller : 'representante',
+        controllerAs: 'controller'
+    }).otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -86,7 +90,7 @@ function($rootScope, $http, $location, $route) {
             self.greeting = response.data;
         }
 	)
-}).controller('licitacao', function($http, $rootScope) {
+}).controller('licitacao', function($http, $rootScope, $scope) {
 	var self = this;
 	self.showEditar = false;
     self.showAdicionar = false;
@@ -138,6 +142,10 @@ function($rootScope, $http, $location, $route) {
                         console.log("orgaos listados")
                         self.orgaos = response.data;
                     }
+                ).then(function (response) {
+                    if (response == undefined) {
+                        $('#file').val('');
+                    }}
                 )
                 console.log("editar licitacao")
             }
@@ -194,6 +202,17 @@ function($rootScope, $http, $location, $route) {
                 window.open(fileURL);
             }
         )
+    }
+
+    $scope.uploadFile = function(files) {
+        var fd = new FormData();
+        fd.append("file", files[0]);
+        $http.post('/saelgi/licitacao/edital/upload/' + self.licitacao.codigo, fd, {
+            withCredentials: true,
+            headers: {'Content-Type': undefined },
+            transformRequest: angular.identity
+        });
+
     }
 
 }).controller('orgao', function($http, $rootScope) {
@@ -319,6 +338,104 @@ function($rootScope, $http, $location, $route) {
                             }
                         )
                         console.log("editar orgao")
+                    }
+                );
+            }
+        );
+    }
+
+    self.btnCancelarEdicaoEndereco = function() {
+        self.showEditarEndereco = false;
+    }
+
+}).controller('representante', function($http, $rootScope, $scope) {
+    var self = this;
+    self.showEditar = false;
+    self.showAdicionar = false;
+    self.showEditarEndereco = false;
+    $http.get('/saelgi/representantes').then(
+        function(response) {
+            console.log("representantes listados")
+            self.representantes = response.data;
+        }
+    )
+
+    self.btnAdicionar = function() {
+        self.showAdicionar = true;
+        self.representante = null;
+        $http.get('/saelgi/obterListaUF').then(
+            function(response) {
+                console.log("UFs listadas")
+                self.ufList = response.data;
+            }
+        )
+        console.log("botao adicionar representante")
+    }
+
+    self.btnCancelar = function() {
+        $http.get('/saelgi/representantes').then(
+            function(response) {
+                console.log("edicao/criacao representante cancelada")
+                self.showEditar = false;
+                self.showAdicionar = false;
+                self.representantes = response.data;
+            }
+        )
+    }
+
+    self.btnEditar = function(codigo) {
+        $http.get('/saelgi/representante/' + codigo).then(
+            function(response) {
+                self.showEditar = true;
+                self.representante = response.data;
+                console.log("editar representante")
+            }
+        );
+    }
+
+    self.btnExcluir = function(codigo) {
+        $http.delete('/saelgi/representante/' + codigo).finally(
+            function() {
+                $http.get('/saelgi/representantes').then(
+                    function(response) {
+                        self.representantes = response.data;
+                    }
+                )
+                console.log("representante excluido")
+            });
+    }
+
+    self.formRepresentante = function() {
+        $http.post('/saelgi/criarEditarRepresentante', self.representante).then(
+            function() {
+                self.showEditar = false;
+                self.showAdicionar = false;
+                console.log("representante editado")
+                $http.get('/saelgi/representantes').then(
+                    function(response) {
+                        console.log("representantes listados")
+                        self.representantes = response.data;
+                    }
+                )
+            });
+    }
+
+    self.formEndereco = function() {
+        $http.post('/saelgi/editarEndereco', self.endereco).then(
+            function() {
+                self.showEditarEndereco = false;
+                console.log("endereco editado")
+                $http.get('/saelgi/representante/' + self.representante.codigo).then(
+                    function(response) {
+                        self.showEditar = true;
+                        self.representante = response.data;
+                        $http.get('/saelgi/obterListaUF').then(
+                            function(response) {
+                                console.log("UFs listadas")
+                                self.ufList = response.data;
+                            }
+                        )
+                        console.log("editar representante")
                     }
                 );
             }

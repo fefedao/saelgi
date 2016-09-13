@@ -7,6 +7,9 @@ INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complem
 INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES (7, 'Ituporanga', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
 INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES (8, 'Bombinhas', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
 INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES (9, 'Blumenau', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080350', 'N');
+INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES (10, 'Antonio Carlos', 'SC', 'Jurua', 'Rua Simoni', '19', 'Casa', 'Em frente ao Parque', '88080310', 'N');
+INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES (11, 'Lages', 'SC', 'Centro', 'Rua Lontra', '197', 'Casa', 'Em frente a Praca', '88010330', 'N');
+INSERT INTO endereco (codigo, municipio, uf, bairro, logradouro, numero, complemento, referencia, cep, flagExcluido) VALUES (12, 'Florianopolis', 'SC', 'Coqueiros', 'Rua Pascoal Simoni', '197', 'Casa', 'Em frente a UDESC', '88080320', 'N');
 
 INSERT INTO orgao (codigo, esfera, nomeOrgao, email, cnpj, endereco, flagExcluido) VALUES (1, 1, 'Secretaria da Saúde de Florianópolis', 'secretariadasaude@pmf.gov.br', '04.865.161/0001-07', 1, 'N');
 INSERT INTO orgao (codigo, esfera, nomeOrgao, email, cnpj, endereco, flagExcluido) VALUES (2, 2, 'Departamento de Desenvolvimento do Estado de Santa Catarina', 'dpmf@sc.gov.br', '53.412.266/0001-08', 2, 'N');
@@ -22,11 +25,11 @@ INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (2, 'Pregã
 INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (3, 'Tomada de Preços', 'N');
 INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (4, 'Concorrência', 'N');
 
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 'N', NULL );
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (2, 2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 'N', NULL );
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (3, 4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 'N', NULL );
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N', NULL );
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido, blEdital) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N', NULL );
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (2, 2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (3, 4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N');
 
 
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (1, 1, '(48) 32411392', 'Setor de Licitações', 'S', 'N');
@@ -41,8 +44,9 @@ INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagEx
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (10, 1, '(48) 32412311', 'Almoxarifado', 'N', 'N');
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (11, 2, '(48) 32412123', 'Portaria', 'N', 'N');
 
-
-
+INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (1, 'Paulo Antonio Siqueira', '709.723.588-89', 10, '(48) 32411391', 'pasiqueira@bol.com.br', 'N');
+INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (2, 'Antonio Silva', '254.831.251-85', 11, '(48) 32411392', 'silva_antonio002@gmail.com', 'N');
+INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (3, 'Carlos Gabriel Peluzzi', '254.831.251-85', 12, '(48) 32411393', 'peluzzi.gabriel@gmail.com', 'N');
 
 
 

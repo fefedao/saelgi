@@ -1,8 +1,6 @@
 package br.com.battycode.main;
 
-import br.com.battycode.dto.Licitacao;
 import br.com.battycode.jpa.repository.LicitacaoRepository;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,8 +30,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import java.io.File;
-
 /**
  * Created by fefedo on 13/04/16.
  */
@@ -56,7 +52,7 @@ public class Saelgi {
     protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/licitacoes.html", "/")
+            http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/licitacoes.html", "/representantes.html", "/")
                     .permitAll().anyRequest().authenticated().and().csrf().csrfTokenRepository(csrfTokenRepository())
                     .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
         }

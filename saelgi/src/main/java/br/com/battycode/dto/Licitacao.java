@@ -3,7 +3,6 @@ package br.com.battycode.dto;
 import br.com.battycode.util.JsonDateSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -43,10 +42,6 @@ public class Licitacao implements Serializable {
     @Column(name = "flagexcluido", nullable = false, length = 1)
     private String flagExcluido;
 
-    @Lob
-    @Column(columnDefinition = "blob", length=100000,name = "bledital", nullable = true)
-    private byte[] blEdital;
-
     @Transient
     private String dataDeAberturaLong;
     @Transient
@@ -60,6 +55,8 @@ public class Licitacao implements Serializable {
     @Transient
     private String dataEntregaDocumentacaoText;
 
+    @Transient
+    private String nmArquivoEdital;
 
     public Licitacao() {
     }
@@ -183,11 +180,11 @@ public class Licitacao implements Serializable {
         return dateFormatText.format(this.dataEntregaDocumentacao);
     }
 
-    public byte[] getBlEdital() {
-        return blEdital;
+    public String getNmArquivoEdital() {
+        return nmArquivoEdital;
     }
 
-    public void setBlEdital(byte[] blEdital) {
-        this.blEdital = blEdital;
+    public void setNmArquivoEdital(String nmArquivoEdital) {
+        this.nmArquivoEdital = nmArquivoEdital;
     }
 }

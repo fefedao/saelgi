@@ -1,5 +1,6 @@
 package br.com.battycode.service;
 
+import br.com.battycode.dto.Edital;
 import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Modalidade;
 import br.com.battycode.dto.Orgao;
@@ -22,4 +23,10 @@ public interface LicitacaoService {
     List<Licitacao> obterTodasLicitacoes();
 
     Licitacao obterLicitacao(Integer codigo);
+
+    void criarEditarEdital(Edital edital) throws IOException;
+
+    Edital obterEdital(Integer codigo);
+
+    String obterNmArquivoEdital(Integer codigoLicitacao);
 }
