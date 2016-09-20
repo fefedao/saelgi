@@ -98,6 +98,14 @@
             <version>2.4</version>
         </dependency>
 
+        <!-- SENDGRID API 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 -->
+        <!-- https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java -->
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>3.0.9</version>
+        </dependency>
+
         <!-- TESTS -->
 
         <dependency>
