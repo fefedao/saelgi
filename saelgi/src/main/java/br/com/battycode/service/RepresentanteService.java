@@ -1,7 +1,9 @@
 package br.com.battycode.service;
 
+import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Representante;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,4 +18,6 @@ public interface RepresentanteService {
     void criarEditarRepresentante(Representante representante);
 
     Representante obterRepresentante(Integer codigo);
+
+    void enviarEmailRepresentanteLicitacao(Licitacao licitacao) throws IOException;
 }

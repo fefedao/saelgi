@@ -1,5 +1,6 @@
 package br.com.battycode.service.impl;
 
+import br.com.battycode.dto.Licitacao;
 import br.com.battycode.dto.Representante;
 import br.com.battycode.jpa.repository.RepresentanteRepository;
 import br.com.battycode.service.RepresentanteService;
@@ -18,6 +19,7 @@ import java.util.List;
 @Service
 public class RepresentanteServiceImpl implements RepresentanteService {
 
+    public static final String SENDGRID_API_KEY = "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";
     @Autowired
     private RepresentanteRepository representanteRepository;
 
@@ -51,14 +53,15 @@ public class RepresentanteServiceImpl implements RepresentanteService {
         return representanteRepository.findOne(codigo);
     }
 
-    public void enviarEmailRepresentanteLicitacao(){
-        Email from = new Email("test@example.com");
-        String subject = "Hello World from the SendGrid Java Library!";
-        Email to = new Email("test@example.com");
-        Content content = new Content("text/plain", "Hello, Email!");
+    @Override
+    public void enviarEmailRepresentanteLicitacao(Licitacao licitacao) throws IOException {
+        Email from = new Email("saelgi@saelgi.com.br");
+        String subject = licitacao.getNumeroEdital() + " " + licitacao.getOrgao().getNomeOrgao();
+        Email to = new Email(licitacao.getRepresentante().getEmail());
+        Content content = new Content("text/plain", "Participar da licitacao na data: " + licitacao.getDataDeAberturaText() + " no orgao: " + licitacao.getOrgao().getNomeOrgao());
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+        SendGrid sg = new SendGrid(SENDGRID_API_KEY);
         Request request = new Request();
         try {
             request.method = Method.POST;

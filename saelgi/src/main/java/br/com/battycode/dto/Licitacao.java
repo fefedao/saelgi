@@ -27,6 +27,9 @@ public class Licitacao implements Serializable {
     @ManyToOne(optional = false)
     private Modalidade modalidade;
 
+    @ManyToOne
+    private Representante representante;
+
     @Column(name = "numeroedital", nullable = false)
     private String numeroEdital;
 
@@ -41,6 +44,8 @@ public class Licitacao implements Serializable {
 
     @Column(name = "flagexcluido", nullable = false, length = 1)
     private String flagExcluido;
+
+
 
     @Transient
     private String dataDeAberturaLong;
@@ -186,5 +191,13 @@ public class Licitacao implements Serializable {
 
     public void setNmArquivoEdital(String nmArquivoEdital) {
         this.nmArquivoEdital = nmArquivoEdital;
+    }
+
+    public Representante getRepresentante() {
+        return representante;
+    }
+
+    public void setRepresentante(Representante representante) {
+        this.representante = representante;
     }
 }

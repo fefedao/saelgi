@@ -181,4 +181,10 @@ public class SaelgiEndpoint {
     public void criarEditarRepresentante(@RequestBody Representante representante) {
         representanteService.criarEditarRepresentante(representante);
     }
+
+	@RequestMapping(value = "/avisarRepresentantesLicitacao/{codigo}", method = RequestMethod.GET)
+	public void avisarRepresentantes(@PathVariable("codigo") Integer codigo) throws IOException {
+		Licitacao licitacao = licitacaoService.obterLicitacao(codigo);
+		representanteService.enviarEmailRepresentanteLicitacao(licitacao);
+	}
 }

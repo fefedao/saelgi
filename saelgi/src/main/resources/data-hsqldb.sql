@@ -25,12 +25,16 @@ INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (2, 'Pregã
 INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (3, 'Tomada de Preços', 'N');
 INSERT INTO modalidade (codigo, nomeModalidade, flagExcluido) VALUES (4, 'Concorrência', 'N');
 
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 'N');
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (2, 2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 'N');
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (3, 4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 'N');
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 'N');
-INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, flagExcluido) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 'N');
+INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (1, 'Paulo Antonio Siqueira', '709.723.588-89', 10, '(48) 32411391', 'pasiqueira@bol.com.br', 'N');
+INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (2, 'Antonio Silva', '254.831.251-85', 11, '(48) 32411392', 'silva_antonio002@gmail.com', 'N');
+INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (3, 'Luiz Alfredo Hartke', '254.831.251-85', 12, '(48) 91449818', 'luiz.hartke@gmail.com', 'N');
+--INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (4, 'Carlos Gabriel Peluzzi', '254.831.251-85', 12, '(48) 32411393', 'peluzzi.gabriel@gmail.com', 'N');
 
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, representante, flagExcluido) VALUES (1, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '213/2010', 3, 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, representante, flagExcluido) VALUES (2, 2, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 3, '251/2010', 3, 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, representante, flagExcluido) VALUES (3, 4, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 1, '288/2010', 3, 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, representante, flagExcluido) VALUES (4, 1, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 2, '219/2010', 3, 'N');
+INSERT INTO licitacao (codigo, orgao, dataDeAbertura, dataEntregaProposta, dataEntregaDocumentacao, modalidade, numeroEdital, representante, flagExcluido) VALUES (5, 7, '2015-12-31 00:00:00', '2015-12-31 00:00:00', '2015-12-31 00:00:00', 4, '223/2010', 3, 'N');
 
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (1, 1, '(48) 32411392', 'Setor de Licitações', 'S', 'N');
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (2, 2, '(48) 32411393', 'Setor de Licitações', 'S', 'N');
@@ -44,9 +48,7 @@ INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagEx
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (10, 1, '(48) 32412311', 'Almoxarifado', 'N', 'N');
 INSERT INTO telefoneorgao (codigo, orgao, numero, descricao, flprincipal, flagExcluido) VALUES (11, 2, '(48) 32412123', 'Portaria', 'N', 'N');
 
-INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (1, 'Paulo Antonio Siqueira', '709.723.588-89', 10, '(48) 32411391', 'pasiqueira@bol.com.br', 'N');
-INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (2, 'Antonio Silva', '254.831.251-85', 11, '(48) 32411392', 'silva_antonio002@gmail.com', 'N');
-INSERT INTO representante (codigo, nome, cpf, endereco, telefone, email, flagExcluido) VALUES (3, 'Carlos Gabriel Peluzzi', '254.831.251-85', 12, '(48) 32411393', 'peluzzi.gabriel@gmail.com', 'N');
+
 
 
 
