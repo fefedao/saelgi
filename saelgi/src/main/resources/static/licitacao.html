@@ -3,6 +3,7 @@
     <p>Entre para obter o conteudo.</p>
 </div>
 <div ng-show="authenticated && !controller.showEditar && !controller.showAdicionar">
+    <div growl></div>
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading" style="background-color: #5cacee;"><span class="lead">Licitações</span></div>
@@ -14,8 +15,7 @@
                     <th style="text-align: center;">Orgão</th>
                     <th style="text-align: center;">Modalidade</th>
                     <th style="text-align: center;">Abertura</th>
-                    <th style="text-align: center;">Proposta</th>
-                    <th style="text-align: center;">Entrega</th>
+                    <th style="text-align: center;">Representante</th>
                     <th align="center" style="padding-left: 0px; padding-right: 0px; width: 10%;"></th>
                     <th align="center" style="padding-left: 0px; padding-right: 0px; width: 15%;"></th>
                 </tr>
@@ -26,8 +26,12 @@
                     <td><span ng-bind="lic.orgao.nomeOrgao"></span></td>
                     <td><span ng-bind="lic.modalidade.nomeModalidade"></span></td>
                     <td><span ng-bind="lic.dataDeAberturaText"></span></td>
-                    <td><span ng-bind="lic.dataEntregaPropostaText"></span></td>
-                    <td><span ng-bind="lic.dataEntregaDocumentacaoText"></span></td>
+                    <td>
+                        <div ng-show="lic.representante != null">
+                            <span ng-bind="lic.representante.nome"></span><br/>
+                            <button type="button" ng-click="controller.btnAvisarRepresentante(lic.codigo)" class="btn btn-warning ">Avisar</button>
+                        </div>
+                    </td>
                     <td>
                         <button type="button" ng-click="controller.btnVisualizarEdital(lic.codigo)" class="btn btn-default ">Ver edital</button>
                     </td>
@@ -80,6 +84,11 @@
             <div class="form-group">
                 <button type="button" ng-click="controller.btnVisualizarEdital(controller.licitacao.codigo)" class="btn btn-default ">Ver edital {{controller.licitacao.nmArquivoEdital}}</button>
             </div>
+        </div>
+
+        <div class="form-group">
+            <label for="representante">Representante:</label>
+            <select name="representante" class="form-control" id="representante" ng-options="representante.nome for representante in controller.representantes track by representante.codigo" ng-model="controller.licitacao.representante" style="width: 50%;" />
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

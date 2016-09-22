@@ -1,4 +1,4 @@
-angular.module('saelgi', [ 'ngRoute', 'ui.mask', 'ui.validate' ]).config(
+angular.module('saelgi', [ 'ngRoute', 'ui.mask', 'ui.validate', 'angular-growl' ]).config(
 
 function($routeProvider, $httpProvider) {
 
@@ -90,7 +90,7 @@ function($rootScope, $http, $location, $route) {
             self.greeting = response.data;
         }
 	)
-}).controller('licitacao', function($http, $rootScope, $scope) {
+}).controller('licitacao', function($http, $rootScope, $scope, growl) {
 	var self = this;
 	self.showEditar = false;
     self.showAdicionar = false;
@@ -119,9 +119,23 @@ function($rootScope, $http, $location, $route) {
                 self.orgaos = response.data;
             }
         );
+        $http.get('/saelgi/representantes').then(
+            function(response) {
+                console.log("representantes listados")
+                self.representantes = response.data;
+            }
+        );
         console.log("botao adicionar licitacao")
     }
 
+    self.btnAvisarRepresentante = function(codigo) {
+        $http.get('/saelgi/avisarRepresentantesLicitacao/' + codigo).then(
+            function() {
+                growl.success("Email enviado com sucesso!");
+                console.log("Aviso enviado")
+            }
+        );
+    }
 
     self.btnEditar = function(codigo) {
         $http.get('/saelgi/licitacao/' + codigo).then(
@@ -136,7 +150,7 @@ function($rootScope, $http, $location, $route) {
                         console.log("modalidades listadas")
                         self.modalidades = response.data;
                     }
-                )
+                );
                 $http.get('/saelgi/orgaos').then(
                     function(response) {
                         console.log("orgaos listados")
@@ -146,7 +160,13 @@ function($rootScope, $http, $location, $route) {
                     if (response == undefined) {
                         $('#file').val('');
                     }}
-                )
+                );
+                $http.get('/saelgi/representantes').then(
+                    function(response) {
+                        console.log("representantes listados")
+                        self.representantes = response.data;
+                    }
+                );
                 console.log("editar licitacao")
             }
         );

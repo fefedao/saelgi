@@ -45,8 +45,6 @@ public class Licitacao implements Serializable {
     @Column(name = "flagexcluido", nullable = false, length = 1)
     private String flagExcluido;
 
-
-
     @Transient
     private String dataDeAberturaLong;
     @Transient
