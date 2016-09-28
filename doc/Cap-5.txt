@@ -1,0 +1,43 @@
+Cap 5 - Desenvolvimento
+
+5.1 Ferramentas:
+		Sistema operacional : 
+			- linux FEDORA 24
+			- MacOSx
+	
+		IDEs: 
+			- Intellij Ultimate
+			- Atom
+	
+		Linguagens: 
+			- Java 8
+			- Javascript/HTML5
+	
+		Frameworks:
+			- Spring (Springboot)
+			- AngularJS
+	
+		Base de dados:
+			- Postgress
+			- HSQLDB
+	
+		Ferramenta de deploy/Conteiner:
+			- docker
+			- docker-compose
+			- tomcat embedded (Springboot)
+	
+		Build/Controle:
+			- TravisCI
+		
+		Versionamento/Controle de ISSUE:
+			- Git(Github)
+	
+	Justificativa: 	
+
+5.2 Historico:
+
+5.3 Funcionalidades:
+
+
+
+7213e39d-f24e-4bb6-94fd-cfa2c9a87874
